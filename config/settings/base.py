@@ -169,7 +169,7 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                'watchdog_kj_kultura.menu.context_processors.menu',
+                'petycja_norweskie.menu.context_processors.menu',
                 # Your stuff: custom template context processors go here
             ],
         },
