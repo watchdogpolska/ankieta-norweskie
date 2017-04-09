@@ -3,17 +3,19 @@ from django.contrib import admin
 
 # Register your models here.
 from django.db.models import Count
+from django.utils.translation import ugettext_lazy as _
 
 from petycja_norweskie.petitions.models import Petition, PermissionDefinition, Signature, Permission
 
 
-class PermissionDefinitionInline(admin.StackedInline):
+class PermissionDefinitionInline(admin.TabularInline):
     model = PermissionDefinition
 
 
 @admin.register(Petition)
 class PetitionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'ask_first_name', 'ask_second_name', 'ask_organization', 'ask_city')
+    list_display = ('title', 'ask_first_name', 'ask_second_name', 'ask_organization', 'ask_city',
+                    'get_permissiondefinition_count', 'get_signature_count')
     inlines = [
         PermissionDefinitionInline,
     ]
@@ -21,16 +23,18 @@ class PetitionAdmin(admin.ModelAdmin):
 
     def get_signature_count(self, obj):
         return obj.signature_count
+    get_signature_count.short_description = _('Signature count')
 
     def get_permissiondefinition_count(self, obj):
-        return obj.permissiondefinition_count
+        return obj.definition_count
+    get_permissiondefinition_count.short_description = _("Permission definition count")
 
     def get_queryset(self, request):
         return super(PetitionAdmin, self).get_queryset(request).annotate(signature_count=Count('signature'),
                                                                          definition_count=Count('permissiondefinition'))
 
 
-class PermissionInline(admin.StackedInline):
+class PermissionInline(admin.TabularInline):
     model = Permission
 
 

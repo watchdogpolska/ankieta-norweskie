@@ -55,7 +55,8 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     # custom users app
     'petycja_norweskie.users.apps.UsersConfig',
-    'petycja_norweskie.petitions'
+    'petycja_norweskie.petitions',
+    'petycja_norweskie.menu',
     # Your stuff: custom apps go here
 ]
 
@@ -168,6 +169,7 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
+                'watchdog_kj_kultura.menu.context_processors.menu',
                 # Your stuff: custom template context processors go here
             ],
         },

@@ -35,6 +35,7 @@ class Petition(TimeStampedModel):
                                 verbose_name=_("Is available on front-view?"),
                                 help_text=_("There should be only one available sites"))
     finish_message = models.TextField(verbose_name=_("Finish message"), help_text=_("Messages shows after signatures"))
+    sign_button_text = models.CharField(max_length=50, default=_("Sign"))
 
     class Meta:
         verbose_name = _("Petition")
@@ -56,8 +57,8 @@ class PermissionDefinition(models.Model):
     ordering = models.PositiveSmallIntegerField(default=1, help_text=_("Define orders of the permissions in form"))
 
     class Meta:
-        verbose_name = _("Permission")
-        verbose_name_plural = _("Permissions")
+        verbose_name = _("Definition")
+        verbose_name_plural = _("Definitions")
 
 
 class SignatureQuerySet(models.QuerySet):
@@ -80,9 +81,13 @@ class Signature(TimeStampedModel):
         ordering = ['created', ]
 
     def __str__(self):
-        return "%s %s".format(self.first_name, self.second_name) or self.organization
+        return "{} {}".format(self.first_name, self.second_name) or self.organization
 
 
 class Permission(models.Model):
     definition = models.ForeignKey(PermissionDefinition, verbose_name=_("Definition"))
     signature = models.ForeignKey(Signature, verbose_name=_("Signature"))
+
+    class Meta:
+        verbose_name = _("Permission")
+        verbose_name_plural = _("Permissions")

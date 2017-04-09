@@ -1,14 +1,24 @@
 # coding=utf-8
 
 # -*- coding: utf-8 -*-
+from atom.ext.crispy_forms.forms import SingleButtonMixin
+from crispy_forms.layout import Layout
 from django import forms
+from django.urls import reverse
+
 from .models import Signature, Permission
 
 
-class SignatureForm(forms.ModelForm):
+class SignatureForm(SingleButtonMixin, forms.ModelForm):
+
+    @property
+    def action_text(self):
+        return self.petition.sign_button_text
+
     def __init__(self, *args, **kwargs):
         self.petition = kwargs.pop("petition")
         super(SignatureForm, self).__init__(*args, **kwargs)
+        self.helper.form_action = reverse("petitions:form", kwargs={'slug': self.petition.slug})
         if not self.petition.ask_first_name:
             del self.fields['first_name']
         if not self.petition.ask_second_name:
@@ -23,6 +33,8 @@ class SignatureForm(forms.ModelForm):
                                        label=definition.text,
                                        initial=definition.default)
             self.fields[self.get_definition_field_name(definition)] = field
+
+        self.helper.layout = self.helper.build_default_layout(self)
 
     def get_definition_field_name(self, definition):
         return 'permission_{}'.format(definition.pk)

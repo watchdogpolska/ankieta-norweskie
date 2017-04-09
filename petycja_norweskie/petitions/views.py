@@ -10,7 +10,7 @@ from petycja_norweskie.petitions.forms import SignatureForm
 from petycja_norweskie.petitions.models import Signature, Petition
 
 
-class PetitionMixin(View):
+class PetitionMixin:
     @cached_property
     def petition(self) -> Petition:
         qs = Petition.objects.for_user(self.request.user)
@@ -45,15 +45,22 @@ class HomePage(RedirectView):
         return get_object_or_404(Petition.objects.for_user(self.request.user), front=True).get_absolute_url()
 
 
-class SignatureFormView(CreateView):
+class SignatureFormView(PetitionMixin, CreateView):
+    model = Signature
     form_class = SignatureForm
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['petition'] = self.petition
+        return kwargs
+
     def get_success_url(self):
-        return reverse('petitions:success', kwargs={'slug': self.object.slug})
+        return reverse('petitions:success', kwargs={'slug': self.petition.slug})
 
 
 class PetitionSuccessView(DetailView):
     model = Petition
+    template_name_suffix = "_success"
 
     def get_queryset(self):
         return super().get_queryset().for_user(self.request.user)

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-span-4">
+            <h1>Petycja</h1>
+            <h2>{{ petition.title }}</h2>
+            {{ petition.text | safe }}
+        </div>
+        <div class="col-span-8">{% crispy form %}
+        </div>
+    </div>
+{% endblock %}

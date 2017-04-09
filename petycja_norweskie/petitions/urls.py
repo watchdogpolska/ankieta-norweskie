@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^$', views.HomePage.as_view(), name="home"),
     url(_(r'^petitions-(?P<slug>[\w-]+)$'), views.PetitionDetailView.as_view(), name="petitions"),
     url(_(r'^petitions-(?P<slug>[\w-]+)/signature$'), views.PetitionDetailView.as_view(), name="signature"),
+    url(_(r'^petitions-(?P<slug>[\w-]+)/create$'), views.SignatureFormView.as_view(), name="form"),
     url(_(r'^petitions-(?P<slug>[\w-]+)/signature-(?P<page>\d+)$'), views.PetitionDetailView.as_view(),
         name="signature"),
     url(_(r'^petitions-(?P<slug>[\w-]+)/thank$'), views.PetitionSuccessView.as_view(), name="success")
