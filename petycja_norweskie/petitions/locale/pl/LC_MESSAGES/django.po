@@ -1,0 +1,136 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-09 22:45+0000\n"
+"PO-Revision-Date: 2017-04-10 00:48+0200\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"Last-Translator: Adam Dobrawy <naczelnik@jawnosc.tk>\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#: apps.py:10 models.py:40 models.py:52 models.py:69
+msgid "Petition"
+msgstr "Petycja"
+
+#: models.py:22
+msgid "Name"
+msgstr "Nazwa"
+
+#: models.py:23
+msgid "Slug"
+msgstr "Identyfikator redakcyjny"
+
+#: models.py:24
+msgid "Title"
+msgstr "Tytuł"
+
+#: models.py:25
+msgid "Text"
+msgstr "Treść"
+
+#: models.py:26
+msgid "Ask first name"
+msgstr "Zapytaj o imię"
+
+#: models.py:27
+msgid "Ask second name"
+msgstr "Zapytaj o nazwisko"
+
+#: models.py:28
+msgid "Ask organization"
+msgstr "Zapytaj o organizacje"
+
+#: models.py:29
+msgid "Ask about city"
+msgstr "Zapytaj o miasto"
+
+#: models.py:31
+msgid "Paginate by"
+msgstr "Na stronę"
+
+#: models.py:32
+msgid "Is published on site?"
+msgstr "Opublikowane na stronie?"
+
+#: models.py:33
+msgid "Is open to new signatures?"
+msgstr "Otwarte na nowe podpisy?"
+
+#: models.py:35
+msgid "Is available on front-view?"
+msgstr "Dostępne na stronie głównej"
+
+#: models.py:36
+msgid "There should be only one available sites"
+msgstr "Tutaj powinna być jedna dostępna strona"
+
+#: models.py:37
+msgid "Finish message"
+msgstr "Wiadomość końcowa"
+
+#: models.py:37
+msgid "Messages shows after signatures"
+msgstr "Wiadomość pokazywana po podpisach"
+
+#: models.py:41
+msgid "Petitions"
+msgstr "Petycje"
+
+#: models.py:54
+msgid "Define default check on permission field"
+msgstr "Czy domyślnie zaznaczone?"
+
+#: models.py:55
+msgid "Define the field is required or not"
+msgstr "Czy wymagane?"
+
+#: models.py:56
+msgid "Define orders of the permissions in form"
+msgstr "Określ kolejność"
+
+#: models.py:59
+msgid "Permission"
+msgstr "Zezwolenie"
+
+#: models.py:60
+msgid "Permissions"
+msgstr "Zezwolenia"
+
+#: models.py:78 models.py:88
+msgid "Signature"
+msgstr "Podpis"
+
+#: models.py:79
+msgid "Signatures"
+msgstr "Podpisy"
+
+#: models.py:87
+msgid "Definition"
+msgstr "Definicja"
+
+#: urls.py:12
+msgid "^petitions-(?P<slug>[\\w-]+)$"
+msgstr "^petycje-(?P<slug>[\\w-]+)$"
+
+#: urls.py:13
+msgid "^petitions-(?P<slug>[\\w-]+)/signature$"
+msgstr "^petycje-(?P<slug>[\\w-]+)$"
+
+#: urls.py:14
+msgid "^petitions-(?P<slug>[\\w-]+)/signature-(?P<page>\\d+)$"
+msgstr "^petycje-(?P<slug>[\\w-]+)/podpisy-(?P<page>\\d+)$"
+
+#: urls.py:16
+msgid "^petitions-(?P<slug>[\\w-]+)/thank$"
+msgstr "^petycje-(?P<slug>[\\w-]+)/podziekowanie$"
