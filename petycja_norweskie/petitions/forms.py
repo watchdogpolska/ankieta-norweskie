@@ -48,7 +48,7 @@ class SignatureForm(SingleButtonMixin, forms.ModelForm):
 
     class Meta:
         model = Signature
-        fields = ['first_name', 'second_name', 'organization', 'city']
+        fields = ['first_name', 'second_name', 'organization', 'city', 'email']
 
     def save(self, commit=True):
         self.instance.petition = self.petition
