@@ -13,6 +13,8 @@
         {% crispy form %}
 
         <a class="btn btn-primary" href="{% url 'petitions:signature' slug=object.slug %}">{%  trans "Signature list" %}</a>
+        <h2>Podpisal</h2>
+        <p>Petycje podpisało {{ object.signature_set.all.count }} organizacji. Dołącz do nich!</p>
     </div>
 </div>
 {%  endblock %}
