@@ -5,7 +5,7 @@ from atom.ext.crispy_forms.forms import SingleButtonMixin
 from crispy_forms.layout import Layout
 from django import forms
 from django.urls import reverse
-
+from crispy_forms.layout import Field
 from .models import Signature, Permission
 
 
@@ -34,7 +34,11 @@ class SignatureForm(SingleButtonMixin, forms.ModelForm):
                                        initial=definition.default)
             self.fields[self.get_definition_field_name(definition)] = field
 
-        self.helper.layout = self.helper.build_default_layout(self)
+        # self.helper.layout = self.helper.build_default_layout(self)
+        self.helper.layout = Layout(*[Field(field_name,
+                                            template="petitions/field_custom.html",
+                                            placeholder=field.label)
+                                      for field_name, field in self.fields.items()])
 
     def get_definition_field_name(self, definition):
         return 'permission_{}'.format(definition.pk)
