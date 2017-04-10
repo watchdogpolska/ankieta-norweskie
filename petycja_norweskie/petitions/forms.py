@@ -52,7 +52,8 @@ class SignatureForm(SingleButtonMixin, forms.ModelForm):
     def save_permissions(self, obj):
         permissions = []
         for definition in self.petition.permissiondefinition_set.all():
-            if self.cleaned_data[self.get_definition_field_name(definition)]:
-                perm = Permission(signature=obj, definition=definition)
-                permissions.append(perm)
+            perm = Permission(signature=obj,
+                              definition=definition,
+                              value=self.cleaned_data[self.get_definition_field_name(definition)])
+            permissions.append(perm)
         Permission.objects.bulk_create(permissions)

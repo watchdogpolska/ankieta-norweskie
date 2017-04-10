@@ -4,8 +4,10 @@ from django.contrib import admin
 # Register your models here.
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
+from import_export.admin import ExportMixin
 
 from petycja_norweskie.petitions.models import Petition, PermissionDefinition, Signature, Permission
+from petycja_norweskie.petitions.resources import SignatureResource
 
 
 class PermissionDefinitionInline(admin.TabularInline):
@@ -39,8 +41,9 @@ class PermissionInline(admin.TabularInline):
 
 
 @admin.register(Signature)
-class SignatureAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'second_name', 'organization', 'city')
+class SignatureAdmin(ExportMixin, admin.ModelAdmin):
+    resource_class = SignatureResource
+    list_display = ('pk', 'first_name', 'second_name', 'organization', 'city')
     inlines = [
         PermissionInline
     ]
