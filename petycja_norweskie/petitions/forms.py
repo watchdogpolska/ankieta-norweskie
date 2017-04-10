@@ -27,6 +27,8 @@ class SignatureForm(SingleButtonMixin, forms.ModelForm):
             del self.fields['organization']
         if not self.petition.ask_city:
             del self.fields['city']
+        if not self.petition.ask_email:
+            del self.fields['email']
 
         self.helper.layout = Layout(*[Field(field_name,
                                             template="petitions/field_custom.html",

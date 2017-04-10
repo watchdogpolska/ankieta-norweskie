@@ -23,11 +23,13 @@ class Petition(TimeStampedModel):
     slug = models.CharField(verbose_name=_("Slug"), max_length=50, unique=True)
     title = models.CharField(verbose_name=_("Title"), max_length=250)
     text = models.TextField(verbose_name=_("Text"))
+
     ask_first_name = models.BooleanField(verbose_name=_("Ask first name"), default=False)
     ask_second_name = models.BooleanField(verbose_name=_("Ask second name"), default=False)
     ask_organization = models.BooleanField(verbose_name=_("Ask organization"), default=True)
-    ask_city = models.BooleanField(verbose_name=_("Ask about city"))
-    objects = PetitionQuerySet.as_manager()
+    ask_city = models.BooleanField(verbose_name=_("Ask about city"), default=True)
+    ask_email = models.BooleanField(verbose_name=_("Ask about e-mail"), default=False)
+
     paginate_by = models.SmallIntegerField(default=50, verbose_name=_("Paginate by"))
     is_published = models.BooleanField(default=False, verbose_name=_("Is published on site?"))
     is_active = models.BooleanField(default=True, verbose_name=_("Is open to new signatures?"))
@@ -36,6 +38,8 @@ class Petition(TimeStampedModel):
                                 help_text=_("There should be only one available sites"))
     finish_message = models.TextField(verbose_name=_("Finish message"), help_text=_("Messages shows after signatures"))
     sign_button_text = models.CharField(max_length=50, default=_("Sign"))
+
+    objects = PetitionQuerySet.as_manager()
 
     class Meta:
         verbose_name = _("Petition")
@@ -72,6 +76,7 @@ class Signature(TimeStampedModel):
     second_name = models.CharField(max_length=50, blank=True, verbose_name=_("Second name"))
     organization = models.CharField(max_length=100, blank=True, verbose_name=_("Organization"))
     city = models.CharField(max_length=50, blank=True, verbose_name=_("City"))
+    email = models.EmailField(verbose_name=_("E-mail"), blank=True)
 
     objects = SignatureQuerySet.as_manager()
 
