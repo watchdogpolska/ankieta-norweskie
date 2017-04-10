@@ -54,6 +54,10 @@ class SignatureFormView(PetitionMixin, CreateView):
         kwargs['petition'] = self.petition
         return kwargs
 
+    def get_context_data(self, **kwargs):
+        kwargs['petition'] = self.petition
+        return super().get_context_data(**kwargs)
+
     def get_success_url(self):
         return reverse('petitions:success', kwargs={'slug': self.petition.slug})
 
