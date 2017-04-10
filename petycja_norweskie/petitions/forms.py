@@ -28,6 +28,11 @@ class SignatureForm(SingleButtonMixin, forms.ModelForm):
         if not self.petition.ask_city:
             del self.fields['city']
 
+        self.helper.layout = Layout(*[Field(field_name,
+                                            template="petitions/field_custom.html",
+                                            placeholder=field.label)
+                                      for field_name, field in self.fields.items()])
+
         for definition in self.petition.permissiondefinition_set.all():
             field = forms.BooleanField(required=definition.required,
                                        label=definition.text,
@@ -35,10 +40,6 @@ class SignatureForm(SingleButtonMixin, forms.ModelForm):
             self.fields[self.get_definition_field_name(definition)] = field
 
         # self.helper.layout = self.helper.build_default_layout(self)
-        self.helper.layout = Layout(*[Field(field_name,
-                                            template="petitions/field_custom.html",
-                                            placeholder=field.label)
-                                      for field_name, field in self.fields.items()])
 
     def get_definition_field_name(self, definition):
         return 'permission_{}'.format(definition.pk)
