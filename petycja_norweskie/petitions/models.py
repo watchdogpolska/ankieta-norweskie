@@ -87,6 +87,7 @@ class Signature(TimeStampedModel):
 class Permission(models.Model):
     definition = models.ForeignKey(PermissionDefinition, verbose_name=_("Definition"))
     signature = models.ForeignKey(Signature, verbose_name=_("Signature"))
+    value = models.BooleanField(verbose_name=_("Value"))
 
     class Meta:
         verbose_name = _("Permission")
