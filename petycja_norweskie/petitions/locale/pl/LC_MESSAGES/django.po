@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-10 09:10+0000\n"
-"PO-Revision-Date: 2017-04-10 11:10+0200\n"
+"POT-Creation-Date: 2017-04-10 09:17+0000\n"
+"PO-Revision-Date: 2017-04-10 11:18+0200\n"
 "Last-Translator: Adam Dobrawy <naczelnik@jawnosc.tk>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -118,6 +118,22 @@ msgstr "Definicja"
 #: models.py:61
 msgid "Definitions"
 msgstr "Definicje"
+
+#: models.py:71
+msgid "First name"
+msgstr "Imię"
+
+#: models.py:72
+msgid "Second name"
+msgstr "Nazwisko"
+
+#: models.py:73
+msgid "Organization"
+msgstr "Organizacja"
+
+#: models.py:74
+msgid "City"
+msgstr "Miejscowość"
 
 #: models.py:79 models.py:89
 msgid "Signature"

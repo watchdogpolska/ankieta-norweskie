@@ -68,10 +68,10 @@ class SignatureQuerySet(models.QuerySet):
 @python_2_unicode_compatible
 class Signature(TimeStampedModel):
     petition = models.ForeignKey(Petition, verbose_name=_("Petition"))
-    first_name = models.CharField(max_length=50, blank=True)
-    second_name = models.CharField(max_length=50, blank=True)
-    organization = models.CharField(max_length=100, blank=True)
-    city = models.CharField(max_length=50, blank=True)
+    first_name = models.CharField(max_length=50, blank=True, verbose_name=_("First name"))
+    second_name = models.CharField(max_length=50, blank=True, verbose_name=_("Second name"))
+    organization = models.CharField(max_length=100, blank=True, verbose_name=_("Organization"))
+    city = models.CharField(max_length=50, blank=True, verbose_name=_("City"))
 
     objects = SignatureQuerySet.as_manager()
 
