@@ -46,7 +46,7 @@ class Petition(TimeStampedModel):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('petitions:petitions', kwargs={'slug': self.slug})
+        return reverse('petitions:petition', kwargs={'slug': self.slug})
 
 
 class PermissionDefinition(models.Model):

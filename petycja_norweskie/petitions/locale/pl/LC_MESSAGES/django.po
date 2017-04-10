@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-10 09:34+0000\n"
-"PO-Revision-Date: 2017-04-10 11:18+0200\n"
+"POT-Creation-Date: 2017-04-10 09:39+0000\n"
+"PO-Revision-Date: 2017-04-10 11:40+0200\n"
 "Last-Translator: Adam Dobrawy <naczelnik@jawnosc.tk>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -155,26 +155,26 @@ msgstr "Zezwolenie"
 msgid "Permissions"
 msgstr "Zezwolenia"
 
-#: templates/petitions/petition_detail.html:16
+#: templates/petitions/petition_detail.html:15
 msgid "Signature list"
 msgstr "Wykaz podpisów"
 
 #: urls.py:12
+msgid "^petitions-(?P<slug>[\\w-]+)/create$"
+msgstr "^petycje-(?P<slug>[\\w-]+)/stworz$"
+
+#: urls.py:13
+msgid "^petitions-(?P<slug>[\\w-]+)/thank$"
+msgstr "^petycje-(?P<slug>[\\w-]+)/podziekowanie$"
+
+#: urls.py:14
 msgid "^petitions-(?P<slug>[\\w-]+)$"
 msgstr "^petycje-(?P<slug>[\\w-]+)$"
 
-#: urls.py:13
+#: urls.py:15
 msgid "^petitions-(?P<slug>[\\w-]+)/signature$"
-msgstr "^petycje-(?P<slug>[\\w-]+)$"
-
-#: urls.py:14
-msgid "^petitions-(?P<slug>[\\w-]+)/signature-(?P<page>\\d+)$"
-msgstr "^petycje-(?P<slug>[\\w-]+)/podpisy-(?P<page>\\d+)$"
+msgstr "^petitions-(?P<slug>[\\w-]+)/podpisy$"
 
 #: urls.py:16
-msgid "^petitions-(?P<slug>[\\w-]+)/create$"
-msgstr "^petitions-(?P<slug>[\\w-]+)/stworz$"
-
-#: urls.py:17
-msgid "^petitions-(?P<slug>[\\w-]+)/thank$"
-msgstr "^petycje-(?P<slug>[\\w-]+)/podziekowanie$"
+msgid "^petitions-(?P<slug>[\\w-]+)/signature-(?P<page>\\d+)$"
+msgstr "^petycje-(?P<slug>[\\w-]+)/podpisy-(?P<page>\\d+)$"
