@@ -21,7 +21,7 @@ class PetitionQuerySet(models.QuerySet):
 class Petition(TimeStampedModel):
     name = models.CharField(verbose_name=_("Name"), max_length=50)
     slug = models.CharField(verbose_name=_("Slug"), max_length=50, unique=True)
-    title = models.CharField(verbose_name=_("Title"), max_length=100)
+    title = models.CharField(verbose_name=_("Title"), max_length=250)
     text = models.TextField(verbose_name=_("Text"))
     ask_first_name = models.BooleanField(verbose_name=_("Ask first name"), default=False)
     ask_second_name = models.BooleanField(verbose_name=_("Ask second name"), default=False)

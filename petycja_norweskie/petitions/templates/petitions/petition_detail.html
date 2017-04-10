@@ -11,7 +11,8 @@
     <div class="col-md-4">
         <h2>Formularz</h2>
         {% crispy form %}
+
+        <a class="btn btn-primary" href="{% url 'petitions:signature' slug=object.slug %}">{%  trans "Signature list" %}</a>
     </div>
 </div>
-<!-- <a class="btn btn-primary" href="{% url 'petitions:signature' slug=object.slug %}">{%  trans "Signature list" %}</a> -->
 {%  endblock %}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-10 09:17+0000\n"
+"POT-Creation-Date: 2017-04-10 09:34+0000\n"
 "PO-Revision-Date: 2017-04-10 11:18+0200\n"
 "Last-Translator: Adam Dobrawy <naczelnik@jawnosc.tk>\n"
 "Language-Team: \n"
@@ -168,12 +168,12 @@ msgid "^petitions-(?P<slug>[\\w-]+)/signature$"
 msgstr "^petycje-(?P<slug>[\\w-]+)$"
 
 #: urls.py:14
-msgid "^petitions-(?P<slug>[\\w-]+)/create$"
-msgstr "^petitions-(?P<slug>[\\w-]+)/stworz$"
-
-#: urls.py:15
 msgid "^petitions-(?P<slug>[\\w-]+)/signature-(?P<page>\\d+)$"
 msgstr "^petycje-(?P<slug>[\\w-]+)/podpisy-(?P<page>\\d+)$"
+
+#: urls.py:16
+msgid "^petitions-(?P<slug>[\\w-]+)/create$"
+msgstr "^petitions-(?P<slug>[\\w-]+)/stworz$"
 
 #: urls.py:17
 msgid "^petitions-(?P<slug>[\\w-]+)/thank$"
