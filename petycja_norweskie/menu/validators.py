@@ -15,9 +15,13 @@ def is_valid_url(value):
     return True
 
 
+def is_mail(value: str):
+    return value.startswith("mailto:")
+
+
 def is_external_or_valid_url(value):
-    if not (is_external_url(value) or is_valid_url(value)):
+    if not (is_external_url(value) or is_valid_url(value) or is_mail(value)):
         raise ValidationError(
-            _('%(value)s is neither an external URL or valid internal URL.'),
+            _('%(value)s is neither an external URL or valid internal URL or mailto.'),
             params={'value': value},
         )
