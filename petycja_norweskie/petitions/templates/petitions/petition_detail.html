@@ -1,6 +1,6 @@
 {%  extends 'base.html' %}
 {%  load crispy_forms_tags %}
-
+{%  load i18n %}
 {%  block content %}
 <div>
     <div class="row">
@@ -13,5 +13,6 @@
             {% crispy form %}
         </div>
     </div>
+    <a class="btn btn-primary" href="{% url 'petitions:signature' slug=object.slug %}">{%  trans "Signature list" %}</a>
 </div>
 {%  endblock %}
