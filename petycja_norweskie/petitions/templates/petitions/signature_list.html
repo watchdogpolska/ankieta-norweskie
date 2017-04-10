@@ -2,8 +2,21 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-{% for object in object_list %}
-{{ object }}
-{% endfor %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nazwa</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for object in object_list %}
+    <tr>
+      <td>
+        {{ object }}
+      </td>
+    </tr>
+      {% endfor %}
+  </tbody>
+</table>
 {% crispy form %}
 {% endblock %}

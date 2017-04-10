@@ -1,18 +1,17 @@
 {%  extends 'base.html' %}
 {%  load crispy_forms_tags %}
 {%  load i18n %}
-{%  block content %}
-<div>
-    <div class="row">
-        <div class="col-span-8">
-            <h1>Petycja</h1>
-            <h2>{{ object.title }}</h2>
-            {{ object.text | safe }}
-        </div>
-        <div class="col-span-4">
-            {% crispy form %}
-        </div>
+{%  block main-content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>Petycja</h1>
+        <h2>{{ object.title }}</h2>
+        {{ object.text | safe }}
     </div>
-    <a class="btn btn-primary" href="{% url 'petitions:signature' slug=object.slug %}">{%  trans "Signature list" %}</a>
+    <div class="col-md-4">
+        <h2>Formularz</h2>
+        {% crispy form %}
+    </div>
 </div>
+<!-- <a class="btn btn-primary" href="{% url 'petitions:signature' slug=object.slug %}">{%  trans "Signature list" %}</a> -->
 {%  endblock %}
