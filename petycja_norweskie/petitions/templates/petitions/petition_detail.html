@@ -3,14 +3,16 @@
 {%  load i18n %}
 {%  block main-content %}
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7">
         <h1>Petycja</h1>
         <h2>{{ object.title }}</h2>
         {{ object.text | safe }}
     </div>
-    <div class="col-md-4">
-        <h2>Formularz</h2>
-        {% crispy form %}
+    <div class="col-md-5">
+        <div id="signature-form">
+          <h2>Wyraż poparcie</h2>
+          {% crispy form %}
+        </div>
 
         <a class="btn btn-primary" href="{% url 'petitions:signature' slug=object.slug %}">{%  trans "Signature list" %}</a>
         <h2>Podpisali</h2>

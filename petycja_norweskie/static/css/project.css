@@ -1,0 +1,12 @@
+#signature-form {
+  padding: 1em;
+  border: 2px solid #BFBEBE;
+  margin-bottom: 1em;
+}
+#signature-form .floating-label-form-group {
+  border-bottom: 2px solid #BFBEBE;
+  margin-bottom: .5em;
+}
+#signature-form .form-group:last-child {
+  margin-bottom: 0;
+}
