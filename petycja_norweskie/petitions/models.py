@@ -86,7 +86,9 @@ class Signature(TimeStampedModel):
         ordering = ['created', ]
 
     def __str__(self):
-        return "{} {}".format(self.first_name, self.second_name) or self.organization
+        if self.first_name or self.second_name:
+            return "{} {}".format(self.first_name, self.second_name)
+        return self.organization
 
 
 class Permission(models.Model):
