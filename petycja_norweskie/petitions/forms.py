@@ -19,29 +19,32 @@ class SignatureForm(SingleButtonMixin, forms.ModelForm):
         self.petition = kwargs.pop("petition")
         super(SignatureForm, self).__init__(*args, **kwargs)
         self.helper.form_action = reverse("petitions:form", kwargs={'slug': self.petition.slug})
-        if not self.petition.ask_first_name:
-            del self.fields['first_name']
-        if not self.petition.ask_second_name:
-            del self.fields['second_name']
-        if not self.petition.ask_organization:
-            del self.fields['organization']
-        if not self.petition.ask_city:
-            del self.fields['city']
-        if not self.petition.ask_email:
-            del self.fields['email']
 
-        self.helper.layout = Layout(*[Field(field_name,
-                                            template="petitions/field_custom.html",
-                                            placeholder=field.label)
-                                      for field_name, field in self.fields.items()])
+        self.hide_fields_or_set_label()
 
+        self.set_fields_label_as_placeholder()
+
+        self.append_permissions_field()
+
+    def append_permissions_field(self):
         for definition in self.petition.permissiondefinition_set.all():
             field = forms.BooleanField(required=definition.required,
                                        label=definition.text,
                                        initial=definition.default)
             self.fields[self.get_definition_field_name(definition)] = field
 
-        # self.helper.layout = self.helper.build_default_layout(self)
+    def hide_fields_or_set_label(self):
+        for name in ['first_name', 'second_name', 'organization', 'city', 'email']:
+            if getattr(self.petition, 'ask_{}'.format(name)):
+                self.fields[name].label = getattr(self.petition, '{}_label'.format(name))
+            else:
+                del self.fields[name]
+
+    def set_fields_label_as_placeholder(self):
+        self.helper.layout = Layout(*[Field(field_name,
+                                            template="petitions/field_custom.html",
+                                            placeholder=field.label)
+                                      for field_name, field in self.fields.items()])
 
     def get_definition_field_name(self, definition):
         return 'permission_{}'.format(definition.pk)

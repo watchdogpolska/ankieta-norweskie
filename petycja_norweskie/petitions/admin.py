@@ -23,6 +23,26 @@ class PetitionAdmin(admin.ModelAdmin):
     ]
     search_fields = ('title', 'text')
 
+    fieldsets = (
+        (None, {
+            'fields': ('name', 'slug', 'title', 'text', 'finish_message')
+        }),
+        (_("Publication"), {'fields': ('is_published', 'is_active', 'front')}),
+        (_('Form'), {
+            'description': _("Configuration on signature submit form"),
+            'fields': (('ask_first_name', 'first_name_label'),
+                       ('ask_second_name', 'second_name_label'),
+                       ('ask_organization', 'organization_label'),
+                       ('ask_city', 'city_label'),
+                       ('ask_email', 'email_label'),
+                       'sign_button_text')
+        }),
+        (_('Advanced'), {
+            'fields': ('paginate_by',)
+        }),
+
+    )
+
     def get_signature_count(self, obj):
         return obj.signature_count
     get_signature_count.short_description = _('Signature count')

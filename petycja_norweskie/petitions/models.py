@@ -20,9 +20,13 @@ class PetitionQuerySet(models.QuerySet):
 @python_2_unicode_compatible
 class Petition(TimeStampedModel):
     name = models.CharField(verbose_name=_("Name"), max_length=50)
-    slug = models.CharField(verbose_name=_("Slug"), max_length=50, unique=True)
+    slug = models.CharField(verbose_name=_("Slug"),
+                            max_length=50,
+                            unique=True,
+                            help_text=_("Modify to update address of petition"))
     title = models.CharField(verbose_name=_("Title"), max_length=250)
     text = models.TextField(verbose_name=_("Text"))
+    finish_message = models.TextField(verbose_name=_("Finish message"), help_text=_("Messages shows after signatures"))
 
     ask_first_name = models.BooleanField(verbose_name=_("Ask first name"), default=False)
     ask_second_name = models.BooleanField(verbose_name=_("Ask second name"), default=False)
@@ -30,14 +34,31 @@ class Petition(TimeStampedModel):
     ask_city = models.BooleanField(verbose_name=_("Ask about city"), default=True)
     ask_email = models.BooleanField(verbose_name=_("Ask about e-mail"), default=False)
 
-    paginate_by = models.SmallIntegerField(default=50, verbose_name=_("Paginate by"))
+    first_name_label = models.CharField(verbose_name=_("Label for first name field"),
+                                        max_length=100,
+                                        default=_("First name"))
+    second_name_label = models.CharField(verbose_name=_("Label for second name field"),
+                                         max_length=100,
+                                         default=_("Second name"))
+    organization_label = models.CharField(verbose_name=_("Label for organization field"),
+                                          max_length=100,
+                                          default=_("Organization"))
+    city_label = models.CharField(verbose_name=_("Label for city field"),
+                                  max_length=100,
+                                  default=_("City"))
+    email_label = models.CharField(verbose_name=_("Label for email field"),
+                                   max_length=100,
+                                   default=_("E-mail"))
+    sign_button_text = models.CharField(max_length=50, default=_("Sign"), help_text=_("Sign button text"))
+
+    paginate_by = models.SmallIntegerField(default=50,
+                                           verbose_name=_("Paginate signatures by"),
+                                           help_text=_("Specifies the number of signatures per signatures page"))
     is_published = models.BooleanField(default=False, verbose_name=_("Is published on site?"))
     is_active = models.BooleanField(default=True, verbose_name=_("Is open to new signatures?"))
     front = models.BooleanField(default=True,
                                 verbose_name=_("Is available on front-view?"),
                                 help_text=_("There should be only one available sites"))
-    finish_message = models.TextField(verbose_name=_("Finish message"), help_text=_("Messages shows after signatures"))
-    sign_button_text = models.CharField(max_length=50, default=_("Sign"))
 
     objects = PetitionQuerySet.as_manager()
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-10 09:47+0000\n"
-"PO-Revision-Date: 2017-04-10 11:47+0200\n"
+"POT-Creation-Date: 2017-04-11 23:21+0000\n"
+"PO-Revision-Date: 2017-04-12 01:22+0200\n"
 "Last-Translator: Adam Dobrawy <naczelnik@jawnosc.tk>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -19,15 +19,31 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.8.7.1\n"
 
-#: admin.py:28
+#: admin.py:30
+msgid "Publication"
+msgstr "Publikacja"
+
+#: admin.py:31
+msgid "Form"
+msgstr "Formularz"
+
+#: admin.py:32
+msgid "Configuration on signature submit form"
+msgstr "Konfiguracja formularza zgłaszania podpisu"
+
+#: admin.py:40
+msgid "Advanced"
+msgstr "Zaawansowane"
+
+#: admin.py:48
 msgid "Signature count"
 msgstr "Liczba podpisów"
 
-#: admin.py:32
+#: admin.py:52
 msgid "Permission definition count"
 msgstr "Liczba definicji zgód"
 
-#: apps.py:10 models.py:41 models.py:53 models.py:70
+#: apps.py:10 models.py:66 models.py:78 models.py:95
 msgid "Petition"
 msgstr "Petycja"
 
@@ -39,142 +55,185 @@ msgstr "Nazwa"
 msgid "Slug"
 msgstr "Identyfikator redakcyjny"
 
-#: models.py:24
+#: models.py:26
+msgid "Modify to update address of petition"
+msgstr "Zmodyfikuj, aby zmienić adres petycji"
+
+#: models.py:27
 msgid "Title"
 msgstr "Tytuł"
 
-#: models.py:25
+#: models.py:28
 msgid "Text"
 msgstr "Treść"
 
-#: models.py:26
-msgid "Ask first name"
-msgstr "Zapytaj o imię"
-
-#: models.py:27
-msgid "Ask second name"
-msgstr "Zapytaj o nazwisko"
-
-#: models.py:28
-msgid "Ask organization"
-msgstr "Zapytaj o organizacje"
-
 #: models.py:29
-msgid "Ask about city"
-msgstr "Zapytaj o miasto"
-
-#: models.py:31
-msgid "Paginate by"
-msgstr "Na stronę"
-
-#: models.py:32
-msgid "Is published on site?"
-msgstr "Opublikowane na stronie?"
-
-#: models.py:33
-msgid "Is open to new signatures?"
-msgstr "Otwarte na nowe podpisy?"
-
-#: models.py:35
-msgid "Is available on front-view?"
-msgstr "Dostępne na stronie głównej"
-
-#: models.py:36
-msgid "There should be only one available sites"
-msgstr "Tutaj powinna być jedna dostępna strona"
-
-#: models.py:37
 msgid "Finish message"
 msgstr "Wiadomość końcowa"
 
-#: models.py:37
+#: models.py:29
 msgid "Messages shows after signatures"
 msgstr "Wiadomość pokazywana po podpisach"
 
-#: models.py:38
-msgid "Sign"
-msgstr "Podpisz"
+#: models.py:31
+msgid "Ask first name"
+msgstr "Zapytaj o imię"
 
-#: models.py:42
-msgid "Petitions"
-msgstr "Petycje"
+#: models.py:32
+msgid "Ask second name"
+msgstr "Zapytaj o nazwisko"
 
-#: models.py:55
-msgid "Define default check on permission field"
-msgstr "Czy domyślnie zaznaczone?"
+#: models.py:33
+msgid "Ask organization"
+msgstr "Zapytaj o organizacje"
 
-#: models.py:56
-msgid "Define the field is required or not"
-msgstr "Czy wymagane?"
+#: models.py:34
+msgid "Ask about city"
+msgstr "Zapytaj o miasto"
 
-#: models.py:57
-msgid "Define orders of the permissions in form"
-msgstr "Określ kolejność"
+#: models.py:35
+msgid "Ask about e-mail"
+msgstr "Zapytaj o e-mail"
 
-#: models.py:60 models.py:88
-msgid "Definition"
-msgstr "Definicja"
+#: models.py:37
+msgid "Label for first name field"
+msgstr "Etykieta pola imienia"
 
-#: models.py:61
-msgid "Definitions"
-msgstr "Definicje"
-
-#: models.py:71
+#: models.py:39 models.py:96
 msgid "First name"
 msgstr "Imię"
 
-#: models.py:72
+#: models.py:40
+msgid "Label for second name field"
+msgstr "Etykieta pola nazwiska"
+
+#: models.py:42 models.py:97
 msgid "Second name"
 msgstr "Nazwisko"
 
-#: models.py:73
+#: models.py:43
+msgid "Label for organization field"
+msgstr "Etykieta pola nazwy organizacji"
+
+#: models.py:45 models.py:98
 msgid "Organization"
 msgstr "Organizacja"
 
-#: models.py:74
+#: models.py:46
+msgid "Label for city field"
+msgstr "Etykieta pola miejscowości"
+
+#: models.py:48 models.py:99
 msgid "City"
 msgstr "Miejscowość"
 
-#: models.py:79 models.py:89
+#: models.py:49
+msgid "Label for email field"
+msgstr "Etykieta pola adresu e-mail"
+
+#: models.py:51 models.py:100
+msgid "E-mail"
+msgstr "Adres e-mail"
+
+#: models.py:52
+msgid "Sign"
+msgstr "Podpisz"
+
+#: models.py:52
+msgid "Sign button text"
+msgstr "Etykieta przycisku zgłoszeniowego"
+
+#: models.py:55
+msgid "Paginate signatures by"
+msgstr "Paginuj podpisy przez"
+
+#: models.py:56
+msgid "Specifies the number of signatures per signatures page"
+msgstr "Określa liczbę podpisów na jednej podstronie z listą podpisów"
+
+#: models.py:57
+msgid "Is published on site?"
+msgstr "Opublikowane na stronie?"
+
+#: models.py:58
+msgid "Is open to new signatures?"
+msgstr "Otwarte na nowe podpisy?"
+
+#: models.py:60
+msgid "Is available on front-view?"
+msgstr "Dostępne na stronie głównej"
+
+#: models.py:61
+msgid "There should be only one available sites"
+msgstr "Tutaj powinna być jedna dostępna strona"
+
+#: models.py:67
+msgid "Petitions"
+msgstr "Petycje"
+
+#: models.py:80
+msgid "Define default check on permission field"
+msgstr "Czy domyślnie zaznaczone?"
+
+#: models.py:81
+msgid "Define the field is required or not"
+msgstr "Czy wymagane?"
+
+#: models.py:82
+msgid "Define orders of the permissions in form"
+msgstr "Określ kolejność"
+
+#: models.py:85 models.py:116
+msgid "Definition"
+msgstr "Definicja zgody"
+
+#: models.py:86
+msgid "Definitions"
+msgstr "Definicje zgód"
+
+#: models.py:105 models.py:117
 msgid "Signature"
 msgstr "Podpis"
 
-#: models.py:80
+#: models.py:106
 msgid "Signatures"
 msgstr "Podpisy"
 
-#: models.py:90
+#: models.py:118
 msgid "Value"
 msgstr "Wartość"
 
-#: models.py:93
+#: models.py:121
 msgid "Permission"
 msgstr "Zezwolenie"
 
-#: models.py:94
+#: models.py:122
 msgid "Permissions"
 msgstr "Zezwolenia"
 
-#: templates/petitions/petition_detail.html:15
+#: templates/petitions/petition_detail.html:17
 msgid "Signature list"
 msgstr "Wykaz podpisów"
 
 #: urls.py:12
-msgid "^petitions-(?P<slug>[\\w-]+)/create$"
-msgstr "^petycje-(?P<slug>[\\w-]+)/stworz$"
+msgid "^(?P<slug>[\\w-]+)/create$"
+msgstr "^(?P<slug>[\\w-]+)/stworz$"
 
 #: urls.py:13
-msgid "^petitions-(?P<slug>[\\w-]+)/thank$"
-msgstr "^petycje-(?P<slug>[\\w-]+)/podziekowanie$"
+msgid "^(?P<slug>[\\w-]+)/thank$"
+msgstr "^(?P<slug>[\\w-]+)/podziekowanie$"
 
 #: urls.py:14
-msgid "^petitions-(?P<slug>[\\w-]+)$"
-msgstr "^petycje-(?P<slug>[\\w-]+)$"
+msgid "^(?P<slug>[\\w-]+)$"
+msgstr "^(?P<slug>[\\w-]+)$"
 
 #: urls.py:15
-msgid "^petitions-(?P<slug>[\\w-]+)/signature$"
-msgstr "^petycje-(?P<slug>[\\w-]+)/podpisy$"
+msgid "^(?P<slug>[\\w-]+)/signature$"
+msgstr "^(?P<slug>[\\w-]+)/podpisy$"
 
 #: urls.py:16
-msgid "^petitions-(?P<slug>[\\w-]+)/signature-(?P<page>\\d+)$"
-msgstr "^petycje-(?P<slug>[\\w-]+)/podpisy-(?P<page>\\d+)$"
+msgid "^(?P<slug>[\\w-]+)/signature-(?P<page>\\d+)$"
+msgstr "^(?P<slug>[\\w-]+)/podpisy-(?P<page>\\d+)$"
+
+#~ msgid "Used to provide friendly link"
+#~ msgstr "Wykorzystywane do zapewnienia przyjaznego adresu"
