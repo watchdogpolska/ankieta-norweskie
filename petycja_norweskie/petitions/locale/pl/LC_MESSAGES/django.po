@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-12 01:01+0000\n"
-"PO-Revision-Date: 2017-04-12 02:55+0200\n"
+"POT-Creation-Date: 2017-04-12 01:52+0000\n"
+"PO-Revision-Date: 2017-04-12 03:52+0200\n"
 "Last-Translator: Adam Dobrawy <naczelnik@jawnosc.tk>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -215,15 +215,15 @@ msgstr "Zezwolenie"
 msgid "Permissions"
 msgstr "Zezwolenia"
 
-#: templates/petitions/petition_detail.html:17
-msgid "Signature list"
-msgstr "Wykaz podpisów"
+#: templates/petitions/norweskie/petition_detail.html:19
+msgid "They signed"
+msgstr "Podpisali"
 
-#: templates/petitions/signature_list.html:25
+#: templates/petitions/norweskie/signature_list.html:25
 msgid "previous"
 msgstr "poprzednie"
 
-#: templates/petitions/signature_list.html:28
+#: templates/petitions/norweskie/signature_list.html:28
 msgid "next"
 msgstr "następne"
 
@@ -246,6 +246,9 @@ msgstr "^(?P<slug>[\\w-]+)/podpisy$"
 #: urls.py:16
 msgid "^(?P<slug>[\\w-]+)/signature-(?P<page>\\d+)$"
 msgstr "^(?P<slug>[\\w-]+)/podpisy-(?P<page>\\d+)$"
+
+#~ msgid "Signature list"
+#~ msgstr "Wykaz podpisów"
 
 #~ msgid "Used to provide friendly link"
 #~ msgstr "Wykorzystywane do zapewnienia przyjaznego adresu"

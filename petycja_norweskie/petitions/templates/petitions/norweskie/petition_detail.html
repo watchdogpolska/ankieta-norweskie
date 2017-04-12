@@ -11,13 +11,12 @@
         </div>
         <div class="col-md-5">
             <div id="signature-form">
-                <h2>Wyraż poparcie</h2>
+                <h2>Wyraź poparcie</h2>
                 {% crispy form %}
             </div>
 
             <a class="btn btn-primary"
-               href="{% url 'petitions:signature' slug=object.slug %}">{% trans "Signature list" %}</a>
-            <h2>Podpisali</h2>
+               href="{% url 'petitions:signature' slug=object.slug %}">{% trans "They signed" %}</a>
             <p>Petycje podpisało {{ object.signature_set.all.count }} organizacji. Dołącz do nich!</p>
         </div>
     </div>
