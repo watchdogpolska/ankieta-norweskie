@@ -10,3 +10,7 @@
 #signature-form .form-group:last-child {
   margin-bottom: 0;
 }
+
+.btn {
+  min-width: 175px;
+}
