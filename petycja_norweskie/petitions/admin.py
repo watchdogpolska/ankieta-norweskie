@@ -26,7 +26,7 @@ class PetitionAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('name', 'slug', 'title', 'text', 'finish_message')
+            'fields': ('name', 'slug', 'title', 'text', 'finish_message', 'overview')
         }),
         (_("Publication"), {'fields': ('is_published', 'is_active', 'front')}),
         (_('Form'), {

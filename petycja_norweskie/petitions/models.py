@@ -34,6 +34,9 @@ class Petition(TimeStampedModel):
                             help_text=_("Modify to update address of petition"))
     title = models.CharField(verbose_name=_("Title"), max_length=250)
     text = models.TextField(verbose_name=_("Text"))
+    overview = models.TextField(verbose_name=_("Overview"),
+                                help_text=_("A brief overview of petition subject encouraging "
+                                            "the signing of the petition."))
     finish_message = models.TextField(verbose_name=_("Finish message"), help_text=_("Messages shows after signatures"))
 
     ask_first_name = models.BooleanField(verbose_name=_("Ask first name"), default=False)

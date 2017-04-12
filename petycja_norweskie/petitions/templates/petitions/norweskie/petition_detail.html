@@ -7,6 +7,7 @@
             {% if campaing.show_title %}
                 <h2>{{ object.title }}</h2>
             {% endif %}
+            {{ object.overview | safe }}
             {{ object.text | safe }}
         </div>
         <div class="col-md-5">
