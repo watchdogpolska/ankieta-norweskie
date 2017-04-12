@@ -55,7 +55,7 @@ class SignatureListView(ThemedViewMixin, PetitionMixin, ListView):
         return self.petition.paginate_by
 
     def get_context_data(self, **kwargs):
-        kwargs['form'] = SignatureForm(petition=self.petition)
+        kwargs['form'] = SignatureForm(petition=self.petition, campaign=self.campaign)
         kwargs['petition'] = self.petition
         return super(SignatureListView, self).get_context_data(**kwargs)
 
