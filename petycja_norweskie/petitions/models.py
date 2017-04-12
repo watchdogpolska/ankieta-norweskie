@@ -1,12 +1,12 @@
 # coding=utf-8
-
-
+from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from model_utils.models import TimeStampedModel
 
+from petycja_norweskie.campaigns.models import Campaign
 from petycja_norweskie.users.models import User
 
 
@@ -16,9 +16,17 @@ class PetitionQuerySet(models.QuerySet):
             return self.filter(is_active=True)
         return self
 
+    def for_site(self, site: Site):
+        return self.filter(campaign__site=site)
+
+    def for_admin(self, user: User):
+        return self.filter(campaign__users=user)
+
 
 @python_2_unicode_compatible
 class Petition(TimeStampedModel):
+    campaign = models.ForeignKey(to=Campaign,
+                                 verbose_name=_("Campaign"))
     name = models.CharField(verbose_name=_("Name"), max_length=50)
     slug = models.CharField(verbose_name=_("Slug"),
                             max_length=50,
@@ -87,7 +95,8 @@ class PermissionDefinition(models.Model):
 
 
 class SignatureQuerySet(models.QuerySet):
-    pass
+    def for_admin(self, user: User):
+        return self.filter(petition__campaign__users=user)
 
 
 @python_2_unicode_compatible

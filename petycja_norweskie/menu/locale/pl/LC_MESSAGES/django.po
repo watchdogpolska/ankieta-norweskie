@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-03 19:07+0100\n"
-"PO-Revision-Date: 2016-12-19 22:18+0100\n"
+"POT-Creation-Date: 2017-04-12 01:01+0000\n"
+"PO-Revision-Date: 2017-04-12 03:01+0200\n"
 "Last-Translator: Adam Dobrawy <naczelnik@jawnosc.tk>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.8.7.1\n"
 
-#: admin.py:32
+#: admin.py:31
 msgid "Children count"
 msgstr "Liczba dzieci"
 
@@ -63,8 +63,9 @@ msgstr "Elementy"
 msgid "Is external URL?"
 msgstr "Czy to zewnętrzny adres?"
 
-#: validators.py:21
+#: validators.py:25
 #, python-format
-msgid "%(value)s is neither an external URL or valid internal URL."
+msgid "%(value)s is neither an external URL or valid internal URL or mailto."
 msgstr ""
-"%(value)s nie jest zewnętrznym adresem lub prawidłowym adresem wewnętrznym."
+"%(value)s nie jest zewnętrznym adresem lub prawidłowym adresem wewnętrznym "
+"lub odnośnikiem mailto."

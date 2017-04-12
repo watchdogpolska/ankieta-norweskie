@@ -1,0 +1,40 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-12 01:00+0000\n"
+"PO-Revision-Date: 2017-04-12 03:01+0200\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"Last-Translator: Adam Dobrawy <naczelnik@jawnosc.tk>\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#: apps.py:7 models.py:20
+msgid "Themes"
+msgstr "Szablony"
+
+#: models.py:11 models.py:12
+msgid "Name"
+msgstr "Nazwa"
+
+#: models.py:13
+msgid "Authorship"
+msgstr "Autorstwo"
+
+#: models.py:14
+msgid "System name of theme prefix"
+msgstr "Systemowa nazwa prefiksu szablonu"
+
+#: models.py:19
+msgid "Theme"
+msgstr "Szablon"

@@ -58,6 +58,8 @@ LOCAL_APPS = [
     'petycja_norweskie.users.apps.UsersConfig',
     'petycja_norweskie.petitions',
     'petycja_norweskie.menu',
+    'petycja_norweskie.campaigns',
+    'petycja_norweskie.themes',
     # Your stuff: custom apps go here
 ]
 

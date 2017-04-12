@@ -6,6 +6,7 @@ from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
 from import_export.admin import ExportMixin
 
+from petycja_norweskie.campaigns.models import Campaign
 from petycja_norweskie.petitions.models import Petition, PermissionDefinition, Signature, Permission
 from petycja_norweskie.petitions.resources import SignatureResource
 
@@ -38,10 +39,15 @@ class PetitionAdmin(admin.ModelAdmin):
                        'sign_button_text')
         }),
         (_('Advanced'), {
-            'fields': ('paginate_by',)
+            'fields': ('paginate_by', 'campaign')
         }),
 
     )
+
+    def formfield_for_choice_field(self, db_field, request, **kwargs):
+        if db_field.name == "campaign":
+            kwargs["campaign"] = Campaign.objects.for_admin(self.request.user).all()
+        return super().formfield_for_choice_field(db_field, request, **kwargs)
 
     def get_signature_count(self, obj):
         return obj.signature_count

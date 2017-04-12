@@ -17,6 +17,8 @@ class SignatureForm(SingleButtonMixin, forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.petition = kwargs.pop("petition")
+        self.campaign = kwargs.pop("campaign")
+
         super(SignatureForm, self).__init__(*args, **kwargs)
         self.helper.form_action = reverse("petitions:form", kwargs={'slug': self.petition.slug})
 
@@ -41,8 +43,9 @@ class SignatureForm(SingleButtonMixin, forms.ModelForm):
                 del self.fields[name]
 
     def set_fields_label_as_placeholder(self):
+        field_template = "petitions/{}/field_custom.html".format(self.campaign.theme.prefix)
         self.helper.layout = Layout(*[Field(field_name,
-                                            template="petitions/field_custom.html",
+                                            template=field_template,
                                             placeholder=field.label)
                                       for field_name, field in self.fields.items()])
 

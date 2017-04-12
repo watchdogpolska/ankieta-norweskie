@@ -56,7 +56,7 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="/">Fundusze Mechanizmu Finansowego EOG dla organizacji</a>
+            <a class="navbar-brand" href="/">{{ campaign.site_title }}</a>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     {% for el in menu %}
@@ -75,7 +75,7 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
                     <div class="page-heading">
-                        <h1>{% block page-title %}niezależne od rządu{% endblock %}</h1>
+                        <h1>{% block page-title %}{{ campaign.site_subtitle }}{% endblock %}</h1>
                         <span class="subheading">{% block page-subheading %}{% endblock %}</span>
                     </div>
                 </div>
@@ -103,55 +103,38 @@
         {% endblock main-content %}
     </div>
 
-<!-- {% if menu %}
-<ul>
-    {% for el in menu %}
-    <li>
-        <a href="{{el.url}}">{{el}}</a>
-        {% if el.children_set %}
-        <ul>
-        {% for child in el.children_set %}
-            <li><a href="{{child.url}}">{{child}}</a>
-        {% endfor %}
-        </ul>
-        {% endif %}
-    </li>
-    {% endfor %}
-</ul>
-{% endif %} -->
-
     <!-- Footer -->
-    <footer style="display: none;">
+    <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-                    <ul class="list-inline text-center">
-                        <li class="list-inline-item">
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted">Copyright &copy; Your Website 2017</p>
+{#                    <ul class="list-inline text-center">#}
+{#                        <li class="list-inline-item">#}
+{#                            <a href="#">#}
+{#                                <span class="fa-stack fa-lg">#}
+{#                                    <i class="fa fa-circle fa-stack-2x"></i>#}
+{#                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>#}
+{#                                </span>#}
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li class="list-inline-item">#}
+{#                            <a href="#">#}
+{#                                <span class="fa-stack fa-lg">#}
+{#                                    <i class="fa fa-circle fa-stack-2x"></i>#}
+{#                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>#}
+{#                                </span>#}
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li class="list-inline-item">#}
+{#                            <a href="http://github.com/watchdogpolska/petycja-norweskie">#}
+{#                                <span class="fa-stack fa-lg">#}
+{#                                    <i class="fa fa-circle fa-stack-2x"></i>#}
+{#                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>#}
+{#                                </span>#}
+{#                            </a>#}
+{#                        </li>#}
+{#                    </ul>#}
+                    <p class="copyright text-muted">Wykonane na zlecenie przez <a href="https://siecobywatelska.pl/uslugi/">Stowarzyszenie Sieć Obywatelska - Watchdog Polska</a></p>
                 </div>
             </div>
         </div>

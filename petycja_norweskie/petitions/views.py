@@ -1,4 +1,5 @@
 # coding=utf-8
+from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import get_object_or_404
 # Create your views here.
 from django.urls import reverse
@@ -6,18 +7,48 @@ from django.views import View
 from django.views.generic import ListView, DetailView, RedirectView, CreateView
 from pip.utils import cached_property
 
+from petycja_norweskie.campaigns.models import Campaign
 from petycja_norweskie.petitions.forms import SignatureForm
 from petycja_norweskie.petitions.models import Signature, Petition
+
+
+class ThemedViewMixin:
+    @cached_property
+    def site(self):
+        return get_current_site(self.request)
+
+    @cached_property
+    def campaign(self):
+        return get_object_or_404(Campaign.objects.select_related('theme'),
+                                 site=self.site)
+
+    @cached_property
+    def template_prefix(self):
+        return self.campaign.theme.prefix
+
+    def get_context_data(self, **kwargs):
+        kwargs['campaign'] = self.campaign
+        return super(ThemedViewMixin, self).get_context_data(**kwargs)
+
+    def get_template_names(self):
+        names = super().get_template_names()
+        names.append("%s/%s/%s%s.html" % (
+            self.model._meta.app_label,
+            self.template_prefix,
+            self.model._meta.model_name,
+            self.template_name_suffix
+        ))
+        return names
 
 
 class PetitionMixin:
     @cached_property
     def petition(self) -> Petition:
-        qs = Petition.objects.for_user(self.request.user)
+        qs = Petition.objects.for_user(self.request.user).for_site(self.site)
         return get_object_or_404(qs, slug=self.kwargs['slug'])
 
 
-class SignatureListView(PetitionMixin, ListView):
+class SignatureListView(ThemedViewMixin, PetitionMixin, ListView):
     model = Signature
 
     def get_paginate_by(self, queryset) -> int:
@@ -32,26 +63,32 @@ class SignatureListView(PetitionMixin, ListView):
         return super().get_queryset().filter(petition=self.petition)
 
 
-class PetitionDetailView(DetailView, PetitionMixin):
+class PetitionDetailView(ThemedViewMixin, PetitionMixin, DetailView):
     model = Petition
 
     def get_context_data(self, **kwargs):
-        kwargs['form'] = SignatureForm(petition=self.petition)
+        kwargs['form'] = SignatureForm(petition=self.petition, campaign=self.campaign)
         return super(PetitionDetailView, self).get_context_data(**kwargs)
 
+    def get_queryset(self):
+        return super().get_queryset().for_site(self.site)
 
-class HomePage(RedirectView):
+
+class HomePage(ThemedViewMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
-        return get_object_or_404(Petition.objects.for_user(self.request.user), front=True).get_absolute_url()
+        petition = get_object_or_404(Petition.objects.for_user(self.request.user).for_site(self.site),
+                                     front=True)
+        return petition.get_absolute_url()
 
 
-class SignatureFormView(PetitionMixin, CreateView):
+class SignatureFormView(ThemedViewMixin, PetitionMixin, CreateView):
     model = Signature
     form_class = SignatureForm
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['petition'] = self.petition
+        kwargs['campaign'] = self.campaign
         return kwargs
 
     def get_context_data(self, **kwargs):
@@ -61,10 +98,13 @@ class SignatureFormView(PetitionMixin, CreateView):
     def get_success_url(self):
         return reverse('petitions:success', kwargs={'slug': self.petition.slug})
 
+    def get_queryset(self):
+        return super().get_queryset().filter(petition=self.petition)
 
-class PetitionSuccessView(DetailView):
+
+class PetitionSuccessView(ThemedViewMixin, DetailView):
     model = Petition
     template_name_suffix = "_success"
 
     def get_queryset(self):
-        return super().get_queryset().for_user(self.request.user)
+        return super().get_queryset().for_user(self.request.user).filter(campaign=self.campaign)
