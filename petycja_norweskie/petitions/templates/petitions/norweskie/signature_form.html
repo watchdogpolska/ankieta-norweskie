@@ -4,11 +4,13 @@
 {% block content %}
     <div class="row">
         <div id="signature-form">
-        {% crispy form %}
+            {% crispy form %}
         </div>
     </div>
     <div class="row">
-        <h2>{{ petition.title }}</h2>
+        {% if campaing.show_title %}
+            <h2>{{ object.title }}</h2>
+        {% endif %}
         {{ petition.text | safe }}
     </div>
 {% endblock %}

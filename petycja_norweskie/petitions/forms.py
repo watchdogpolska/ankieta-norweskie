@@ -39,6 +39,7 @@ class SignatureForm(SingleButtonMixin, forms.ModelForm):
         for name in ['first_name', 'second_name', 'organization', 'city', 'email']:
             if getattr(self.petition, 'ask_{}'.format(name)):
                 self.fields[name].label = getattr(self.petition, '{}_label'.format(name))
+                self.fields[name].required = True
             else:
                 del self.fields[name]
 
