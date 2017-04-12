@@ -1,22 +1,24 @@
-{%  extends 'norweskie/base.html' %}
-{%  load crispy_forms_tags %}
-{%  load i18n %}
-{%  block main-content %}
-<div class="row">
-    <div class="col-md-7">
-        <h1>Petycja</h1>
-        <h2>{{ object.title }}</h2>
-        {{ object.text | safe }}
-    </div>
-    <div class="col-md-5">
-        <div id="signature-form">
-          <h2>Wyraż poparcie</h2>
-          {% crispy form %}
+{% extends 'norweskie/base.html' %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% block main-content %}
+    <div class="row">
+        <div class="col-md-7">
+            {% if campaing.show_title %}
+                <h2>{{ object.title }}</h2>
+            {% endif %}
+            {{ object.text | safe }}
         </div>
+        <div class="col-md-5">
+            <div id="signature-form">
+                <h2>Wyraż poparcie</h2>
+                {% crispy form %}
+            </div>
 
-        <a class="btn btn-primary" href="{% url 'petitions:signature' slug=object.slug %}">{%  trans "Signature list" %}</a>
-        <h2>Podpisali</h2>
-        <p>Petycje podpisało {{ object.signature_set.all.count }} organizacji. Dołącz do nich!</p>
+            <a class="btn btn-primary"
+               href="{% url 'petitions:signature' slug=object.slug %}">{% trans "Signature list" %}</a>
+            <h2>Podpisali</h2>
+            <p>Petycje podpisało {{ object.signature_set.all.count }} organizacji. Dołącz do nich!</p>
+        </div>
     </div>
-</div>
-{%  endblock %}
+{% endblock %}

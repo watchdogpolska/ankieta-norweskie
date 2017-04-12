@@ -35,6 +35,9 @@ class Campaign(TimeStampedModel):
 
     users = models.ManyToManyField(to=User, help_text=_("Users responsive to manage of campaign"))
 
+    show_title = models.BooleanField(default=True,
+                                     help_text=_("Show title of petition"))
+
     class Meta:
         verbose_name = _("Campaign")
         verbose_name_plural = _("Campaigns")
