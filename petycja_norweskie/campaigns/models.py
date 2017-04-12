@@ -33,7 +33,7 @@ class Campaign(TimeStampedModel):
     site_subtitle = models.CharField(verbose_name=_("Subtitle"),
                                      max_length=150)
 
-    users = models.ManyToManyField(to=User, help_text=_("Users responsive to manage of campaign"))
+    users = models.ManyToManyField(to=User, verbose_name=_("Users"), help_text=_("Users responsive to manage of campaign"))
 
     show_title = models.BooleanField(default=True,
                                      help_text=_("Show title of petition"))
