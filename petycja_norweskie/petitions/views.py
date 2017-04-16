@@ -1,10 +1,8 @@
 # coding=utf-8
 from django.contrib.sites.shortcuts import get_current_site
-from django.http import Http404
 from django.shortcuts import get_object_or_404
 # Create your views here.
 from django.urls import reverse
-from django.views import View
 from django.views.generic import ListView, DetailView, RedirectView, CreateView
 from pip.utils import cached_property
 

@@ -1,11 +1,9 @@
 # coding=utf-8
-from django.conf import settings
 from django.contrib.sites.models import Site
 from django.db import models
-
+from django.utils.translation import ugettext_lazy as _
 # Create your models here.
 from model_utils.models import TimeStampedModel
-from django.utils.translation import ugettext_lazy as _
 
 from petycja_norweskie.themes.models import Theme
 from petycja_norweskie.users.models import User

@@ -4,6 +4,7 @@ from django.db.models import Prefetch
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from model_utils.models import TimeStampedModel
+
 from .validators import is_external_or_valid_url, is_external_url
 
 

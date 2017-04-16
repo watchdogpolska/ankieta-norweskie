@@ -1,6 +1,6 @@
 # coding=utf-8
-from django.test import TestCase
 from django.core.exceptions import ValidationError
+from django.test import TestCase
 
 # Create your tests here.
 from petycja_norweskie.menu.validators import is_external_url, is_valid_url, is_external_or_valid_url

@@ -1,8 +1,6 @@
 # coding=utf-8
-from unittest import TestCase
 
-from django.test import TestCase, RequestFactory
-
+from django.test import TestCase
 # Create your tests here.
 from django.urls import reverse
 

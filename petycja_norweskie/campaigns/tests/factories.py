@@ -1,8 +1,7 @@
 # coding=utf-8
-import factory
-from django.conf import settings
 from django.contrib.sites.models import Site
 
+import factory
 from petycja_norweskie.campaigns.models import Campaign
 from petycja_norweskie.themes.models import Theme
 
