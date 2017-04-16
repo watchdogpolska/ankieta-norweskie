@@ -22,4 +22,4 @@ class CampaignFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = Campaign
-        django_get_or_create = ('name', )
+        django_get_or_create = ('name',)

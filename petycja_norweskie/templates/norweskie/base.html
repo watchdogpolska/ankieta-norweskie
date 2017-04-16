@@ -1,6 +1,6 @@
 {% load staticfiles i18n %}<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
 
     <meta charset="utf-8">
@@ -20,146 +20,151 @@
     <![endif]-->
 
     {% block css %}
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
-    <!-- Custom fonts for this template -->
-    <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <meta property="og:image" content="https://norweskie.org/{% static 'img/FB_cover.png' %}" />
-    <meta property="og:image:secure_url" content="https://norweskie.org/{% static 'img/FB_cover.png' %}" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="991" />
-    <meta property="og:image:height" content="381" />
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/clean-blog.min.css' %}" rel="stylesheet">
-    <!-- This file stores project-specific CSS -->
-    <link href="{% static 'css/project.css' %}" rel="stylesheet">
+        <!-- Custom fonts for this template -->
+        <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+              type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+              rel='stylesheet' type='text/css'>
+        <meta property="og:image" content="https://norweskie.org/{% static 'img/FB_cover.png' %}"/>
+        <meta property="og:image:secure_url" content="https://norweskie.org/{% static 'img/FB_cover.png' %}"/>
+        <meta property="og:image:type" content="image/png"/>
+        <meta property="og:image:width" content="991"/>
+        <meta property="og:image:height" content="381"/>
+        <!-- Custom styles for this template -->
+        <link href="{% static 'css/clean-blog.min.css' %}" rel="stylesheet">
+        <!-- This file stores project-specific CSS -->
+        <link href="{% static 'css/project.css' %}" rel="stylesheet">
 
-    <!-- Temporary navbar container fix -->
-    <style>
-    .navbar-toggler {
-        z-index: 1;
-    }
+        <!-- Temporary navbar container fix -->
+        <style>
+            .navbar-toggler {
+                z-index: 1;
+            }
 
-    @media (max-width: 576px) {
-        nav > .container {
-            width: 100%;
-        }
-    }
-    </style>
+            @media (max-width: 576px) {
+                nav > .container {
+                    width: 100%;
+                }
+            }
+        </style>
     {% endblock %}
 
-  </head>
+</head>
 
-  <body>
-    <!-- Navigation -->
-    <nav class="navbar fixed-top navbar-toggleable-md navbar-light" id="mainNav">
-        <div class="container">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                Menu <i class="fa fa-bars"></i>
-            </button>
-            <a class="navbar-brand" href="/">{{ campaign.site_title }}</a>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    {% for el in menu %}
+<body>
+<!-- Navigation -->
+<nav class="navbar fixed-top navbar-toggleable-md navbar-light" id="mainNav">
+    <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+            Menu <i class="fa fa-bars"></i>
+        </button>
+        <a class="navbar-brand" href="/">{{ campaign.site_title }}</a>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                {% for el in menu %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{el.url}}">{{el}}</a>
+                        <a class="nav-link" href="{{ el.url }}">{{ el }}</a>
                     </li>
-                    {% endfor %}
-                </ul>
-            </div>
+                {% endfor %}
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <!-- Page Header -->
-    <header class="masthead" style="background-image: url('{% static 'img/about-bg.jpg' %}')">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-                    <div class="page-heading">
-                        <h1>{% block page-title %}{{ campaign.site_subtitle }}{% endblock %}</h1>
-                        <span class="subheading">{% block page-subheading %}{% endblock %}</span>
-                    </div>
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('{% static 'img/about-bg.jpg' %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                <div class="page-heading">
+                    <h1>{% block page-title %}{{ campaign.site_subtitle }}{% endblock %}</h1>
+                    <span class="subheading">{% block page-subheading %}{% endblock %}</span>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- Main Content -->
-    <div class="container">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
-        {% block main-content %}
+<!-- Main Content -->
+<div class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    {% block main-content %}
         <div class="row">
             <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
 
-              {% block content %}
-                <p>Use this document as a way to quick start any new project.</p>
-              {% endblock content %}
+                {% block content %}
+                    <p>Use this document as a way to quick start any new project.</p>
+                {% endblock content %}
 
             </div>
         </div>
-        {% endblock main-content %}
+    {% endblock main-content %}
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                {#                    <ul class="list-inline text-center">#}
+                {#                        <li class="list-inline-item">#}
+                {#                            <a href="#">#}
+                {#                                <span class="fa-stack fa-lg">#}
+                {#                                    <i class="fa fa-circle fa-stack-2x"></i>#}
+                {#                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>#}
+                {#                                </span>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                        <li class="list-inline-item">#}
+                {#                            <a href="#">#}
+                {#                                <span class="fa-stack fa-lg">#}
+                {#                                    <i class="fa fa-circle fa-stack-2x"></i>#}
+                {#                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>#}
+                {#                                </span>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                        <li class="list-inline-item">#}
+                {#                            <a href="http://github.com/watchdogpolska/petycja-norweskie">#}
+                {#                                <span class="fa-stack fa-lg">#}
+                {#                                    <i class="fa fa-circle fa-stack-2x"></i>#}
+                {#                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>#}
+                {#                                </span>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                    </ul>#}
+                <p class="copyright text-muted">Wykonane na zlecenie przez <a href="https://siecobywatelska.pl/uslugi/">Stowarzyszenie
+                    Sieć Obywatelska Watchdog Polska</a></p>
+            </div>
+        </div>
     </div>
+</footer>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-{#                    <ul class="list-inline text-center">#}
-{#                        <li class="list-inline-item">#}
-{#                            <a href="#">#}
-{#                                <span class="fa-stack fa-lg">#}
-{#                                    <i class="fa fa-circle fa-stack-2x"></i>#}
-{#                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>#}
-{#                                </span>#}
-{#                            </a>#}
-{#                        </li>#}
-{#                        <li class="list-inline-item">#}
-{#                            <a href="#">#}
-{#                                <span class="fa-stack fa-lg">#}
-{#                                    <i class="fa fa-circle fa-stack-2x"></i>#}
-{#                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>#}
-{#                                </span>#}
-{#                            </a>#}
-{#                        </li>#}
-{#                        <li class="list-inline-item">#}
-{#                            <a href="http://github.com/watchdogpolska/petycja-norweskie">#}
-{#                                <span class="fa-stack fa-lg">#}
-{#                                    <i class="fa fa-circle fa-stack-2x"></i>#}
-{#                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>#}
-{#                                </span>#}
-{#                            </a>#}
-{#                        </li>#}
-{#                    </ul>#}
-                    <p class="copyright text-muted">Wykonane na zlecenie przez <a href="https://siecobywatelska.pl/uslugi/">Stowarzyszenie Sieć Obywatelska Watchdog Polska</a></p>
-                </div>
-            </div>
-        </div>
-    </footer>
+{% block modal %}{% endblock modal %}
 
-    {% block modal %}{% endblock modal %}
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+{% block javascript %}
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/tether/tether.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    {% block javascript %}
-      <!-- Bootstrap core JavaScript -->
-      <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-      <script src="{% static 'vendor/tether/tether.min.js' %}"></script>
-      <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-
-      <!-- Custom scripts for this template -->
-      <script src="{% static 'js/clean-blog.min.js' %}"></script>
+    <!-- Custom scripts for this template -->
+    <script src="{% static 'js/clean-blog.min.js' %}"></script>
 
 
-    {% endblock javascript %}
-  </body>
+{% endblock javascript %}
+</body>
 </html>
 

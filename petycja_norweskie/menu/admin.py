@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
@@ -19,7 +20,7 @@ class ElementAdmin(admin.ModelAdmin):
     list_display = ('name', 'url', 'is_external_url', 'get_children_count')
     list_filter = ('created', 'modified')
     search_fields = ('name', 'url')
-    exclude = ('parent', )
+    exclude = ('parent',)
     inlines = [ElementInline]
 
     def get_queryset(self, *args, **kwargs):
@@ -28,4 +29,5 @@ class ElementAdmin(admin.ModelAdmin):
 
     def get_children_count(self, obj):
         return obj.children_count
+
     get_children_count.short_description = _('Children count')

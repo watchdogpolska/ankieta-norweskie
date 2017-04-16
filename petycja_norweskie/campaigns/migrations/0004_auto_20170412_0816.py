@@ -7,7 +7,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('campaigns', '0003_campaign_show_title'),
     ]
@@ -16,6 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='campaign',
             name='users',
-            field=models.ManyToManyField(help_text='Users responsive to manage of campaign', to=settings.AUTH_USER_MODEL, verbose_name='Users'),
+            field=models.ManyToManyField(help_text='Users responsive to manage of campaign',
+                                         to=settings.AUTH_USER_MODEL, verbose_name='Users'),
         ),
     ]

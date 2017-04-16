@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 To understand why this file is here, please read:
 
@@ -36,7 +37,6 @@ def update_site_backward(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('sites', '0002_alter_domain_unique'),
     ]

@@ -7,7 +7,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('campaigns', '0002_initial_data'),
         ('petitions', '0005_auto_20170411_2314'),
@@ -17,13 +16,16 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='petition',
             name='campaign',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='campaigns.Campaign', verbose_name='Campaign'),
+            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='campaigns.Campaign',
+                                    verbose_name='Campaign'),
             preserve_default=False,
         ),
         migrations.AlterField(
             model_name='petition',
             name='paginate_by',
-            field=models.SmallIntegerField(default=50, help_text='Specifies the number of signatures per signatures page', verbose_name='Paginate signatures by'),
+            field=models.SmallIntegerField(default=50,
+                                           help_text='Specifies the number of signatures per signatures page',
+                                           verbose_name='Paginate signatures by'),
         ),
         migrations.AlterField(
             model_name='petition',
@@ -33,6 +35,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='petition',
             name='slug',
-            field=models.CharField(help_text='Modify to update address of petition', max_length=50, unique=True, verbose_name='Slug'),
+            field=models.CharField(help_text='Modify to update address of petition', max_length=50, unique=True,
+                                   verbose_name='Slug'),
         ),
     ]

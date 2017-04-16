@@ -1,3 +1,4 @@
+# coding=utf-8
 from .models import Element
 
 
@@ -32,5 +33,5 @@ def menu(request):
 
     """
     return {'menu': Element.objects.filter(parent=None).
-            root_with_children().
-            all()}
+        root_with_children().
+        all()}

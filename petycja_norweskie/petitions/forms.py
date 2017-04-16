@@ -10,7 +10,6 @@ from .models import Signature, Permission
 
 
 class SignatureForm(SingleButtonMixin, forms.ModelForm):
-
     @property
     def action_text(self):
         return self.petition.sign_button_text

@@ -1,10 +1,10 @@
+# coding=utf-8
 from test_plus.test import TestCase
 
 from ..admin import MyUserCreationForm
 
 
 class TestMyUserCreationForm(TestCase):
-
     def setUp(self):
         self.user = self.make_user('notalamode', 'notalamodespassword')
 

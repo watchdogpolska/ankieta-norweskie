@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('petitions', '0004_auto_20170410_1656'),
     ]
@@ -40,6 +39,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='petition',
             name='slug',
-            field=models.CharField(help_text='Used to provide friendly name', max_length=50, unique=True, verbose_name='Slug'),
+            field=models.CharField(help_text='Used to provide friendly name', max_length=50, unique=True,
+                                   verbose_name='Slug'),
         ),
     ]

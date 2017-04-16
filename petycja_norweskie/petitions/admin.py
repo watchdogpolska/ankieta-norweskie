@@ -51,10 +51,12 @@ class PetitionAdmin(admin.ModelAdmin):
 
     def get_signature_count(self, obj):
         return obj.signature_count
+
     get_signature_count.short_description = _('Signature count')
 
     def get_permissiondefinition_count(self, obj):
         return obj.definition_count
+
     get_permissiondefinition_count.short_description = _("Permission definition count")
 
     def get_queryset(self, request):

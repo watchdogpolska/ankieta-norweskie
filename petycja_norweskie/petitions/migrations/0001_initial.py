@@ -9,7 +9,6 @@ import model_utils.fields
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -29,7 +28,8 @@ class Migration(migrations.Migration):
                 ('text', models.TextField()),
                 ('default', models.BooleanField(default=True, help_text='Define default check on permission field')),
                 ('required', models.BooleanField(default=True, help_text='Define the field is required or not')),
-                ('ordering', models.PositiveSmallIntegerField(default=1, help_text='Define orders of the permissions in form')),
+                ('ordering',
+                 models.PositiveSmallIntegerField(default=1, help_text='Define orders of the permissions in form')),
             ],
             options={
                 'verbose_name_plural': 'Permissions',
@@ -40,8 +40,10 @@ class Migration(migrations.Migration):
             name='Petition',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', model_utils.fields.AutoCreatedField(default=django.utils.timezone.now, editable=False, verbose_name='created')),
-                ('modified', model_utils.fields.AutoLastModifiedField(default=django.utils.timezone.now, editable=False, verbose_name='modified')),
+                ('created', model_utils.fields.AutoCreatedField(default=django.utils.timezone.now, editable=False,
+                                                                verbose_name='created')),
+                ('modified', model_utils.fields.AutoLastModifiedField(default=django.utils.timezone.now, editable=False,
+                                                                      verbose_name='modified')),
                 ('name', models.CharField(max_length=50, verbose_name='Name')),
                 ('slug', models.CharField(max_length=50, unique=True, verbose_name='Slug')),
                 ('title', models.CharField(max_length=100, verbose_name='Title')),
@@ -53,8 +55,10 @@ class Migration(migrations.Migration):
                 ('paginate_by', models.SmallIntegerField(default=50, verbose_name='Paginate by')),
                 ('is_published', models.BooleanField(default=False, verbose_name='Is published on site?')),
                 ('is_active', models.BooleanField(default=True, verbose_name='Is open to new signatures?')),
-                ('front', models.BooleanField(default=True, help_text='There should be only one available sites', verbose_name='Is available on front-view?')),
-                ('finish_message', models.TextField(help_text='Messages shows after signatures', verbose_name='Finish message')),
+                ('front', models.BooleanField(default=True, help_text='There should be only one available sites',
+                                              verbose_name='Is available on front-view?')),
+                ('finish_message',
+                 models.TextField(help_text='Messages shows after signatures', verbose_name='Finish message')),
             ],
             options={
                 'ordering': ['created'],
@@ -66,13 +70,16 @@ class Migration(migrations.Migration):
             name='Signature',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', model_utils.fields.AutoCreatedField(default=django.utils.timezone.now, editable=False, verbose_name='created')),
-                ('modified', model_utils.fields.AutoLastModifiedField(default=django.utils.timezone.now, editable=False, verbose_name='modified')),
+                ('created', model_utils.fields.AutoCreatedField(default=django.utils.timezone.now, editable=False,
+                                                                verbose_name='created')),
+                ('modified', model_utils.fields.AutoLastModifiedField(default=django.utils.timezone.now, editable=False,
+                                                                      verbose_name='modified')),
                 ('first_name', models.CharField(blank=True, max_length=50)),
                 ('second_name', models.CharField(blank=True, max_length=50)),
                 ('organization', models.CharField(blank=True, max_length=100)),
                 ('city', models.CharField(blank=True, max_length=50)),
-                ('petition', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='petitions.Petition', verbose_name='Petition')),
+                ('petition', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='petitions.Petition',
+                                               verbose_name='Petition')),
             ],
             options={
                 'ordering': ['created'],
@@ -83,16 +90,19 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='permissiondefinition',
             name='petition',
-            field=models.ForeignKey(help_text='Petition', on_delete=django.db.models.deletion.CASCADE, to='petitions.Petition'),
+            field=models.ForeignKey(help_text='Petition', on_delete=django.db.models.deletion.CASCADE,
+                                    to='petitions.Petition'),
         ),
         migrations.AddField(
             model_name='permission',
             name='definition',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='petitions.PermissionDefinition', verbose_name='Definition'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='petitions.PermissionDefinition',
+                                    verbose_name='Definition'),
         ),
         migrations.AddField(
             model_name='permission',
             name='signature',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='petitions.Signature', verbose_name='Signature'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='petitions.Signature',
+                                    verbose_name='Signature'),
         ),
     ]

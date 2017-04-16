@@ -7,7 +7,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('campaigns', '0005_auto_20170416_1524'),
     ]
@@ -16,6 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='campaign',
             name='site',
-            field=models.OneToOneField(help_text='Sites used in campaign', on_delete=django.db.models.deletion.CASCADE, to='sites.Site', verbose_name='Site'),
+            field=models.OneToOneField(help_text='Sites used in campaign', on_delete=django.db.models.deletion.CASCADE,
+                                       to='sites.Site', verbose_name='Site'),
         ),
     ]

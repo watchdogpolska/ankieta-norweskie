@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.db import migrations
 
+
 # It's
 # def update_campaign_forward(apps, schema_editor):
 #     """Set site domain and name."""
@@ -26,7 +27,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('campaigns', '0001_initial'),
         ('themes', '0001_initial'),

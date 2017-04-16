@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('petitions', '0007_petition_overview'),
     ]
@@ -15,6 +14,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='petition',
             name='overview',
-            field=models.TextField(help_text='A brief overview of petition subject encouraging the signing of the petition.', verbose_name='Overview'),
+            field=models.TextField(
+                help_text='A brief overview of petition subject encouraging the signing of the petition.',
+                verbose_name='Overview'),
         ),
     ]

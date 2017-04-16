@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.db import models
 from django.db.models import Prefetch
 from django.utils.encoding import python_2_unicode_compatible
@@ -7,7 +8,6 @@ from .validators import is_external_or_valid_url, is_external_url
 
 
 class ElementQuerySet(models.QuerySet):
-
     def root_with_children(self, visible=True):
         qs = self
         qs_children = Element.objects.all()
@@ -52,5 +52,6 @@ class Element(TimeStampedModel):
 
     def is_external_url(self):
         return is_external_url(self.url)
+
     is_external_url.short_description = _('Is external URL?')
     is_external_url.boolean = True
