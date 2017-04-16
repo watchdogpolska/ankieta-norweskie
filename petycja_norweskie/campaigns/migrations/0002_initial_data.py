@@ -5,24 +5,24 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.db import migrations
 
-
-def update_campaign_forward(apps, schema_editor):
-    """Set site domain and name."""
-    Campaign = apps.get_model('campaigns', 'Campaign')
-    Theme = apps.get_model('themes', 'Theme')
-    Site = apps.get_model('sites', 'Site')
-
-    Campaign.objects.update_or_create(
-        id=1,
-        defaults={
-            'name': 'Niezależne fundusze norweskie',
-            'organizer': '',
-            'site_title': 'Fundusze Mechanizmu Finansowego EOG dla organizacji',
-            'site_subtitle': 'niezależne od rządu',
-            'site': Site(pk=settings.SITE_ID),
-            'theme': Theme(pk=1)
-        }
-    )
+# It's
+# def update_campaign_forward(apps, schema_editor):
+#     """Set site domain and name."""
+#     Campaign = apps.get_model('campaigns', 'Campaign')
+#     Theme = apps.get_model('themes', 'Theme')
+#     Site = apps.get_model('sites', 'Site')
+#
+#     Campaign.objects.update_or_create(
+#         id=1,
+#         defaults={
+#             'name': 'Niezależne fundusze norweskie',
+#             'organizer': '',
+#             'site_title': 'Fundusze Mechanizmu Finansowego EOG dla organizacji',
+#             'site_subtitle': 'niezależne od rządu',
+#             'site': Site(pk=settings.SITE_ID),
+#             'theme': Theme(pk=1)
+#         }
+#     )
 
 
 class Migration(migrations.Migration):
@@ -34,5 +34,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(update_campaign_forward)
+        # migrations.RunPython(update_campaign_forward)
     ]

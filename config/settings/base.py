@@ -48,6 +48,7 @@ DJANGO_APPS = [
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
+    'factory',
     'crispy_forms',  # Form layouts
     'import_export',
 ]

@@ -25,15 +25,16 @@ class Campaign(TimeStampedModel):
                                  help_text=_("Person or organization responsible for campaign organization"))
     theme = models.ForeignKey(Theme)
 
-    site = models.ForeignKey(Site,
-                             verbose_name=_("Site"),
-                             help_text=_("Sites used in campaign"))
+    site = models.OneToOneField(Site,
+                                verbose_name=_("Site"),
+                                help_text=_("Sites used in campaign"))
     site_title = models.CharField(verbose_name=_("Name"),
                                   max_length=150)
     site_subtitle = models.CharField(verbose_name=_("Subtitle"),
                                      max_length=150)
 
-    users = models.ManyToManyField(to=User, verbose_name=_("Users"), help_text=_("Users responsive to manage of campaign"))
+    users = models.ManyToManyField(to=User, verbose_name=_("Users"),
+                                   help_text=_("Users responsive to manage of campaign"))
 
     show_title = models.BooleanField(default=True,
                                      help_text=_("Show title of petition"))

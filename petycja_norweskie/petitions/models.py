@@ -124,6 +124,7 @@ class Signature(TimeStampedModel):
         return self.organization
 
 
+
 class Permission(models.Model):
     definition = models.ForeignKey(PermissionDefinition, verbose_name=_("Definition"))
     signature = models.ForeignKey(Signature, verbose_name=_("Signature"))

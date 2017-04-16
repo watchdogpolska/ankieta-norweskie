@@ -69,7 +69,7 @@ class PermissionInline(admin.TabularInline):
 @admin.register(Signature)
 class SignatureAdmin(ExportMixin, admin.ModelAdmin):
     resource_class = SignatureResource
-    list_display = ('pk', 'first_name', 'second_name', 'organization', 'city')
+    list_display = ('pk', 'first_name', 'second_name', 'organization', 'city', 'email')
     inlines = [
         PermissionInline
     ]

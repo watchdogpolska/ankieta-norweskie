@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
-from django.urls import Resolver404, resolve
 from django.utils.translation import ugettext_lazy as _
+from django.urls import Resolver404, resolve
 
 
 def is_external_url(value):

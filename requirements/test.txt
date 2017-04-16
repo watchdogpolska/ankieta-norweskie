@@ -1,7 +1,5 @@
 # Test dependencies go here.
--r base.txt
-
-
+-r local.txt
 
 coverage==4.3.4
 flake8==3.3.0 # pyup: != 2.6.0

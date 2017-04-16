@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.core.exceptions import ValidationError
 
 # Create your tests here.
-from .validators import is_external_url, is_valid_url, is_external_or_valid_url
+from petycja_norweskie.menu.validators import is_external_url, is_valid_url, is_external_or_valid_url
 
 
 class ValidatorTestCase(TestCase):
@@ -15,7 +15,7 @@ class ValidatorTestCase(TestCase):
                    '/google.com/']
     INT_VALID = ['/admin/']
     INT_INVALID = ['http://google/',
-                   '/go',
+                   '//go',
                    '////']
 
     def test_is_external_url_for_valid_values(self):

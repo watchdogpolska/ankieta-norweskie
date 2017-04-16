@@ -1,12 +1,20 @@
-sudo: true
-before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
-  - sudo apt-get install -qq libtiff4-dev libjpeg8-dev libfreetype6-dev liblcms1-dev libwebp-dev
-  - sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv python-pip
-  - sudo apt-get install -qq firefox automake libtool libreadline6 libreadline6-dev libreadline-dev
-  - sudo apt-get install -qq libsqlite3-dev libxml2 libxml2-dev libssl-dev libbz2-dev wget curl llvm
 language: python
 python:
 - "3.5"
 
+cache: pip
+
+install:
+  - pip install -U pip wheel
+  - pip install tox
+script:
+  - travis_retry tox -e $TOX_ENV
+
+env:
+  fast_finish: true
+  global:
+    - DATABASE_URL="mysql://root:@localhost/petycja_norweskie"
+  matrix:
+    - TOX_ENV=dj110-coveralls
+    - TOX_ENV=dj111-coveralls
+    - TOX_ENV=djmaster-coveralls

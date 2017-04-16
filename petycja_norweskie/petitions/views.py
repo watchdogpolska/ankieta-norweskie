@@ -1,5 +1,6 @@
 # coding=utf-8
 from django.contrib.sites.shortcuts import get_current_site
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 # Create your views here.
 from django.urls import reverse
@@ -19,8 +20,7 @@ class ThemedViewMixin:
 
     @cached_property
     def campaign(self):
-        return get_object_or_404(Campaign.objects.select_related('theme'),
-                                 site=self.site)
+        return get_object_or_404(Campaign.objects.select_related('theme'), site=self.site)
 
     @cached_property
     def template_prefix(self):
@@ -69,6 +69,10 @@ class PetitionDetailView(ThemedViewMixin, PetitionMixin, DetailView):
     def get_context_data(self, **kwargs):
         kwargs['form'] = SignatureForm(petition=self.petition, campaign=self.campaign)
         return super(PetitionDetailView, self).get_context_data(**kwargs)
+
+    @cached_property
+    def campaign(self):
+        return self.object.campaign
 
     def get_queryset(self):
         return super().get_queryset().for_site(self.site)
