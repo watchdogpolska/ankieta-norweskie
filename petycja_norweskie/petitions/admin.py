@@ -22,7 +22,6 @@ class PetitionAdmin(admin.ModelAdmin):
         PermissionDefinitionInline,
     ]
     search_fields = ('title', 'text')
-
     fieldsets = (
         (None, {
             'fields': ('name', 'slug', 'title', 'text', 'finish_message', 'overview')
@@ -45,7 +44,7 @@ class PetitionAdmin(admin.ModelAdmin):
 
     def formfield_for_choice_field(self, db_field, request, **kwargs):
         if db_field.name == "campaign":
-            kwargs["campaign"] = Campaign.objects.for_admin(self.request.user).all()
+            kwargs["choices"] = Campaign.objects.for_admin(self.request.user).all()
         return super().formfield_for_choice_field(db_field, request, **kwargs)
 
     def get_signature_count(self, obj):
@@ -70,7 +69,8 @@ class PermissionInline(admin.TabularInline):
 @admin.register(Signature)
 class SignatureAdmin(ExportMixin, admin.ModelAdmin):
     resource_class = SignatureResource
-    list_display = ('pk', 'first_name', 'second_name', 'organization', 'city', 'email')
+    list_display = ('pk', 'counter', 'first_name', 'second_name', 'organization', 'city', 'email')
     inlines = [
         PermissionInline
     ]
+    readonly_fields = ('counter', )

@@ -39,6 +39,8 @@ class Campaign(TimeStampedModel):
     show_title = models.BooleanField(default=True,
                                      help_text=_("Show title of petition"))
 
+    objects = CampaignQuerySet.as_manager()
+
     class Meta:
         verbose_name = _("Campaign")
         verbose_name_plural = _("Campaigns")

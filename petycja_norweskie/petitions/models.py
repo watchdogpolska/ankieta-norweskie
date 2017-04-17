@@ -75,7 +75,6 @@ class Petition(TimeStampedModel):
     front = models.BooleanField(default=True,
                                 verbose_name=_("Is available on front-view?"),
                                 help_text=_("There should be only one available sites"))
-
     objects = PetitionQuerySet.as_manager()
 
     class Meta:
@@ -115,7 +114,7 @@ class Signature(TimeStampedModel):
     organization = models.CharField(max_length=100, blank=True, verbose_name=_("Organization"))
     city = models.CharField(max_length=50, blank=True, verbose_name=_("City"))
     email = models.EmailField(verbose_name=_("E-mail"), blank=True)
-
+    counter = models.SmallIntegerField(verbose_name=_("No."))
     objects = SignatureQuerySet.as_manager()
 
     class Meta:
@@ -137,3 +136,8 @@ class Permission(models.Model):
     class Meta:
         verbose_name = _("Permission")
         verbose_name_plural = _("Permissions")
+
+
+def update_counter(sender, instance, **kwargs):
+    if instance.counter is None and instance.petition is not None:
+        instance.counter = (Signature.objects.filter(petition=instance.petition).count() + 1)
