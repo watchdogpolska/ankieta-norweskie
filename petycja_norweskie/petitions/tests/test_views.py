@@ -1,11 +1,13 @@
 # coding=utf-8
-
 from django.test import TestCase
-# Create your tests here.
-from django.urls import reverse
 
 from petycja_norweskie.campaigns.tests.factories import CampaignFactory
 from petycja_norweskie.petitions.tests.factories import SignatureFactory, PetitionFactory
+
+try:
+    from django.core.urlresolvers import reverse
+except ImportError:
+    from django.urls import reverse
 
 
 class HomePageTestCase(TestCase):

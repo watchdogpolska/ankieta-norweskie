@@ -1,8 +1,6 @@
 # coding=utf-8
 from django.contrib.sites.shortcuts import get_current_site
 from django.shortcuts import get_object_or_404
-# Create your views here.
-from django.urls import reverse
 from django.views.generic import ListView, DetailView, RedirectView, CreateView
 from pip.utils import cached_property
 
@@ -10,6 +8,10 @@ from petycja_norweskie.campaigns.models import Campaign
 from petycja_norweskie.petitions.forms import SignatureForm
 from petycja_norweskie.petitions.models import Signature, Petition
 
+try:
+    from django.core.urlresolvers import reverse
+except ImportError:
+    from django.urls import reverse
 
 class ThemedViewMixin:
     @cached_property

@@ -1,13 +1,15 @@
 # coding=utf-8
-
-# -*- coding: utf-8 -*-
 from atom.ext.crispy_forms.forms import SingleButtonMixin
 from crispy_forms.layout import Field
 from crispy_forms.layout import Layout
 from django import forms
-from django.urls import reverse
 
 from .models import Signature, Permission
+
+try:
+    from django.core.urlresolvers import reverse
+except ImportError:
+    from django.urls import reverse
 
 
 class SignatureForm(SingleButtonMixin, forms.ModelForm):
