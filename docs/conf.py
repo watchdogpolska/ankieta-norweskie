@@ -13,8 +13,20 @@
 
 from __future__ import unicode_literals
 
+import inspect
 import os
 import sys
+
+import django
+from django.core.urlresolvers import get_resolver
+from django.utils.encoding import force_text
+from django.utils.html import strip_tags
+
+sys.path.append(os.path.abspath('..'))
+os.environ['DJANGO_SETTINGS_MODULE'] = 'config.settings.local'
+os.environ['DATABASE_URL'] = 'mysql://'
+
+django.setup()
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -28,7 +40,22 @@ import sys
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = []
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.coverage',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.todo',
+]
+
+intersphinx_mapping = {
+    'python': ('https://python.readthedocs.io/en/v2.7.2/', None),
+    'django': ('https://docs.djangoproject.com/en/dev/',
+               'http://docs.djangoproject.com/en/dev/_objects/'),
+    'sphinx': ('https://sphinx.readthedocs.io/en/latest/', None),
+    'grappelli': ('https://django-grappelli.readthedocs.io/en/latest/', None),
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -94,7 +121,14 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+try:
+    import sphinx_rtd_theme
+
+    html_theme = "sphinx_rtd_theme"
+
+    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+except ImportError:
+    html_theme = 'default'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -218,8 +252,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'petycja_norweskie', 'petycja-norweskie Documentation',
-     ["""Adam Dobrawy"""], 1)
+    ('index', 'petycja_norweskie', 'Dokumentacja petycja-norweskie',
+     ["""Sieć Obywatelska Watchdog Polska"""], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -232,9 +266,9 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    ('index', 'petycja_norweskie', 'petycja-norweskie Documentation',
-     """Adam Dobrawy""", 'petycja-norweskie',
-     """Strona ankcji w sprawie Fundusz Norweskich sfinansowana przez Fundacje Akademia Organizacji Pozarządowych""", 'Miscellaneous'),
+    ('index', 'petycja_norweskie', 'Dokumentacja petycja-norweskie',
+     """Sieć Obywatelska Watchdog Polska""", 'petycja-norweskie',
+     """Strona mechanizmów akcji petycyjnych Stowarzyszenia Sieć Obywatelska Watchdog Polska""", 'Miscellaneous'),
 ]
 
 # Documents to append as an appendix to all manuals.
@@ -245,3 +279,71 @@ texinfo_documents = [
 
 # How to display URL addresses: 'footnote', 'no', or 'inline'.
 # texinfo_show_urls = 'footnote'
+
+def process_django_model(app, what, name, obj, options, lines):
+    # This causes import errors if left outside the function
+    from django.db import models
+
+    # Only look at objects that inherit from Django's base model class
+    if inspect.isclass(obj) and issubclass(obj, models.Model):
+        # Grab the field list from the meta class
+        fields = obj._meta.fields
+
+        for field in fields:
+            # Decode and strip any html out of the field's help text
+            help_text = strip_tags(force_text(field.help_text))
+
+            # Decode and capitalize the verbose name, for use if there isn't
+            # any help text
+            verbose_name = force_text(field.verbose_name).capitalize()
+
+            if help_text:
+                # Add the model field to the end of the docstring as a param
+                # using the help text as the description
+                lines.append(':param %s: %s' % (field.attname, help_text))
+            else:
+                # Add the model field to the end of the docstring as a param
+                # using the verbose name as the description
+                lines.append(':param %s: %s' % (field.attname, verbose_name))
+
+            # Add the field's type to the docstring
+            if isinstance(field, (models.ForeignKey, models.OneToOneField, models.ManyToManyField)):
+                lines.append(':type %s: %s to :class:`%s.%s`' % (field.attname,
+                                                                 type(field).__name__,
+                                                                 field.rel.to.__module__,
+                                                                 field.rel.to.__name__))
+            else:
+                lines.append(':type %s: %s' % (field.attname, type(field).__name__))
+    # Return the extended docstring
+    return lines
+
+
+def process_django_view(app, what, name, obj, options, lines):
+    res = get_resolver()
+    flat_patterns = []
+
+    def walker(flat_patterns, urlpatterns, namespace=None):
+        for pattern in urlpatterns:
+            if hasattr(pattern, 'url_patterns'):
+                walker(flat_patterns, pattern.url_patterns, pattern.namespace)
+            else:
+                urlname = '%s:%s' % (namespace, pattern.name) if namespace else pattern.name
+                flat_patterns.append([urlname, pattern.callback])
+    walker(flat_patterns, res.url_patterns)
+    for urlname, callback in flat_patterns:
+        if (hasattr(callback, 'view_class') and callback.view_class == obj) or callback == obj:
+            lines.append(":param url_name: ``%s``\n" % urlname)
+    return lines
+
+
+def process_django_form(app, what, name, obj, options, lines):
+    from django import forms
+    if inspect.isclass(obj) and issubclass(obj, (forms.Form, forms.ModelForm)):
+        for fieldname, field in obj.base_fields.items():
+            lines.append(u':param %s: %s' % (fieldname, field.label))
+
+
+def setup(app):
+    app.connect('autodoc-process-docstring', process_django_model)
+    app.connect('autodoc-process-docstring', process_django_view)
+    app.connect('autodoc-process-docstring', process_django_form)

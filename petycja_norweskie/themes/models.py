@@ -12,7 +12,7 @@ class Theme(TimeStampedModel):
     name = models.CharField(max_length=100, verbose_name=_("Name"))
     description = models.TextField(verbose_name=_("Name"))
     authorship = models.CharField(verbose_name=_("Authorship"), max_length=100)
-    prefix = models.CharField(max_length=25, verbose_name=_("System name of theme prefix"))
+    prefix = models.CharField(max_length=25, unique=True, verbose_name=_("System name of theme prefix"))
     objects = ThemeQuerySet.as_manager()
 
     class Meta:

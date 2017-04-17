@@ -72,3 +72,6 @@ petycja_norweskie/media/
 
 
 staticfiles/
+docs/_build
+.vagrant
+

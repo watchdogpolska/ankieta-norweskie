@@ -7,4 +7,7 @@ from petycja_norweskie.campaigns.models import Campaign
 
 @admin.register(Campaign)
 class CampaignAdmin(admin.ModelAdmin):
+    """
+        Admin View for Campaign
+    """
     list_display = ('name', 'theme', 'organizer', 'site_title', 'site_subtitle')

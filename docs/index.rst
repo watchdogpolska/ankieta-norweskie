@@ -11,10 +11,14 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   concept
    install
    deploy
-   docker_ec2
    tests
+   modules/campaigns
+   modules/menu
+   modules/petitions
+   modules/themes
 
 
 
