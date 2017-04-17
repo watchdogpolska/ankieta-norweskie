@@ -26,9 +26,9 @@ class SignatureForm(SingleButtonMixin, forms.ModelForm):
 
         self.hide_fields_or_set_label()
 
-        self.set_fields_label_as_placeholder()
-
         self.append_permissions_field()
+
+        self.set_fields_label_as_placeholder()
 
     def append_permissions_field(self):
         for definition in self.petition.permissiondefinition_set.all():
@@ -47,10 +47,13 @@ class SignatureForm(SingleButtonMixin, forms.ModelForm):
 
     def set_fields_label_as_placeholder(self):
         field_template = "petitions/{}/field_custom.html".format(self.campaign.theme.prefix)
-        self.helper.layout = Layout(*[Field(field_name,
-                                            template=field_template,
-                                            placeholder=field.label)
-                                      for field_name, field in self.fields.items()])
+        fields = []
+        for field_name, field in self.fields.items():
+            fields.append(Field(field_name,
+                                template=field_template,
+                                label=field.label,
+                                placeholder=field.label))
+        self.helper.layout = Layout(*fields)
 
     def get_definition_field_name(self, definition):
         return 'permission_{}'.format(definition.pk)

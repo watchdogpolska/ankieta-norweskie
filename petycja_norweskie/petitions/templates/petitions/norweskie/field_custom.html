@@ -4,7 +4,7 @@
     {{ field }}
 {% else %}
     {% if field|is_checkbox %}
-        <div class="form-group{% if using_grid_layout %} row{% endif %} floating-label-form-group">
+        <div class="form-group{% if using_grid_layout %} row{% endif %} label-form-group">
         {% if label_class %}
             <div class="controls col-{{ bootstrap_device_type }}-offset-{{ label_size }} {{ field_class }}">
         {% endif %}
