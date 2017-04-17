@@ -9,7 +9,7 @@ def update_signature_counter(apps, schema_editor):
     Petition = apps.get_model('petitions', 'Petition')
     for petition in Petition.objects.all():
         for i, signature in enumerate(petition.signature_set.all()):
-            signature.counter = i
+            signature.counter = i + 1
             signature.save(update_fields=['counter'])
 
 
