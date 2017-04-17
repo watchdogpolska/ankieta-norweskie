@@ -19,5 +19,11 @@ System petycyjny Stowarzyszenia Sieć Obywatelska - Watchdog Polska.
     :target: https://pyup.io/repos/github/watchdogpolska/petycja-norweskie/
     :alt: Updates
 
+System petycyjny posiada następujące funkcjonalności:
 
+* możliwość przeprowadzania wielu petycji z wielu instancji (kampanie),
+* system szablonów dla każdej kampanii,
+* elastycznie konfigurowany formularz podpisu,
+* mechanizm zgód i ich definicji.
 
+Szczegółówe informacje na temat projektu zostały przedstawione w dokumentacji: https://petycja-norweskie.readthedocs.io/
