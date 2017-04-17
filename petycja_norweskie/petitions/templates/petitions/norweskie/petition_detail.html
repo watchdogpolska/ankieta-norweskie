@@ -19,6 +19,8 @@
             <a class="btn btn-primary"
                href="{% url 'petitions:signature' slug=object.slug %}">{% trans "They signed" %}</a>
             <p>List podpisało {{ object.signature_set.all.count }} organizacji. Dołącz do nich!</p>
+            <h2>Powiadom innych:</h2>
+            <p><div class="fb-share-button" data-href="{{ request.get_host }}" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnorweskie.org&amp;src=sdkpreparse">Udostępnij</a></div>, <div class="fb-send" data-href="{{ request.get_host }}"></div></p>
         </div>
     </div>
 {% endblock %}
