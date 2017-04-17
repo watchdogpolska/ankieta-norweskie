@@ -30,7 +30,8 @@ class PetitionQuerySet(models.QuerySet):
 @python_2_unicode_compatible
 class Petition(TimeStampedModel):
     campaign = models.ForeignKey(to=Campaign,
-                                 verbose_name=_("Campaign"))
+                                 verbose_name=_("Campaign"),
+                                 on_delete=models.CASCADE)
     name = models.CharField(verbose_name=_("Name"), max_length=50)
     slug = models.CharField(verbose_name=_("Slug"),
                             max_length=50,
@@ -90,7 +91,7 @@ class Petition(TimeStampedModel):
 
 
 class PermissionDefinition(models.Model):
-    petition = models.ForeignKey(Petition, help_text=_("Petition"))
+    petition = models.ForeignKey(Petition, help_text=_("Petition"), on_delete=models.CASCADE)
     text = models.TextField()
     default = models.BooleanField(default=True, help_text=_("Define default check on permission field"))
     required = models.BooleanField(default=True, help_text=_("Define the field is required or not"))
@@ -108,7 +109,7 @@ class SignatureQuerySet(models.QuerySet):
 
 @python_2_unicode_compatible
 class Signature(TimeStampedModel):
-    petition = models.ForeignKey(Petition, verbose_name=_("Petition"))
+    petition = models.ForeignKey(Petition, verbose_name=_("Petition"), on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50, blank=True, verbose_name=_("First name"))
     second_name = models.CharField(max_length=50, blank=True, verbose_name=_("Second name"))
     organization = models.CharField(max_length=100, blank=True, verbose_name=_("Organization"))
@@ -129,8 +130,8 @@ class Signature(TimeStampedModel):
 
 
 class Permission(models.Model):
-    definition = models.ForeignKey(PermissionDefinition, verbose_name=_("Definition"))
-    signature = models.ForeignKey(Signature, verbose_name=_("Signature"))
+    definition = models.ForeignKey(PermissionDefinition, verbose_name=_("Definition"), on_delete=models.CASCADE)
+    signature = models.ForeignKey(Signature, verbose_name=_("Signature"), on_delete=models.CASCADE)
     value = models.BooleanField(verbose_name=_("Value"))
 
     class Meta:

@@ -33,7 +33,8 @@ class Element(TimeStampedModel):
                                verbose_name=_("Parent"),
                                null=True,
                                blank=True,
-                               limit_choices_to={'parent': None})
+                               limit_choices_to={'parent': None},
+                               on_delete=models.CASCADE)
     visible = models.BooleanField(verbose_name=_("Public visible"),
                                   help_text=_("Check to mark element as public visible"),
                                   default=False)

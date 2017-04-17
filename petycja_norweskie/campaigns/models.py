@@ -22,11 +22,12 @@ class Campaign(TimeStampedModel):
     organizer = models.CharField(verbose_name=_("Organizer"),
                                  max_length=250,
                                  help_text=_("Person or organization responsible for campaign organization"))
-    theme = models.ForeignKey(Theme)
+    theme = models.ForeignKey(Theme, on_delete=models.CASCADE)
 
     site = models.OneToOneField(Site,
                                 verbose_name=_("Site"),
-                                help_text=_("Sites used in campaign"))
+                                help_text=_("Sites used in campaign"),
+                                on_delete=models.CASCADE)
     site_title = models.CharField(verbose_name=_("Name"),
                                   max_length=150)
     site_subtitle = models.CharField(verbose_name=_("Subtitle"),
