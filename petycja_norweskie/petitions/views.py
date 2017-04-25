@@ -1,5 +1,8 @@
 # coding=utf-8
+from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import message
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView, RedirectView, CreateView
 from pip.utils import cached_property
@@ -98,6 +101,12 @@ class SignatureFormView(ThemedViewMixin, PetitionMixin, CreateView):
     def get_context_data(self, **kwargs):
         kwargs['petition'] = self.petition
         return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        if not self.petition.is_active:
+            messages.warning(self.request, self.petition.disabled_warning)
+            return HttpResponseRedirect(self.petition.get_absolute_url())
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('petitions:success', kwargs={'slug': self.petition.slug})

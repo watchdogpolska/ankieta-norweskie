@@ -2,15 +2,20 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="row">
-        <div id="signature-form">
-            {% crispy form %}
-        </div>
-    </div>
-    <div class="row">
-        {% if campaing.show_title %}
-            <h2>{{ object.title }}</h2>
-        {% endif %}
-        {{ petition.text | safe }}
-    </div>
+<div class="row">
+  {% if petition.is_active %}
+  <div id="signature-form">
+    <h2>Wyraź poparcie</h2>
+    {% crispy form %}
+  </div>
+  {% else %}
+  {{petition.disabled_message}}
+  {% endif %}
+</div>
+<div class="row">
+  {% if campaing.show_title %}
+  <h2>{{ object.title }}</h2>
+  {% endif %}
+  {{ petition.text | safe }}
+</div>
 {% endblock %}

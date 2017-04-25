@@ -27,7 +27,7 @@ class PetitionAdmin(admin.ModelAdmin):
         (None, {
             'fields': ('name', 'slug', 'title', 'text', 'finish_message', 'overview')
         }),
-        (_("Publication"), {'fields': ('is_published', 'is_active', 'front')}),
+        (_("Publication"), {'fields': ('is_published', 'front')}),
         (_('Form'), {
             'description': _("Configuration on signature submit form"),
             'fields': (('ask_first_name', 'first_name_label'),
@@ -36,6 +36,9 @@ class PetitionAdmin(admin.ModelAdmin):
                        ('ask_city', 'city_label'),
                        ('ask_email', 'email_label'),
                        'sign_button_text')
+        }),
+        (_('Completion of the petition'), {
+            'fields': ('is_active', 'disabled_warning', 'disabled_message')
         }),
         (_('Advanced'), {
             'fields': ('paginate_by', 'campaign')

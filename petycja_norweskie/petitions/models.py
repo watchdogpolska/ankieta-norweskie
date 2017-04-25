@@ -17,7 +17,7 @@ except ImportError:
 class PetitionQuerySet(models.QuerySet):
     def for_user(self, user: User):
         if user.is_anonymous():
-            return self.filter(is_active=True)
+            return self.filter(is_published=True)
         return self
 
     def for_site(self, site: Site):
@@ -75,6 +75,13 @@ class Petition(TimeStampedModel):
     front = models.BooleanField(default=True,
                                 verbose_name=_("Is available on front-view?"),
                                 help_text=_("There should be only one available sites"))
+    disabled_warning = models.TextField(verbose_name=_("Message of disabled signature warning"),
+                                        default=_("The ability to sign under this petition has been disabled."),
+                                        help_text=_("A message when someone is trying to inject a signature, "
+                                                    "despite turning off the form."))
+    disabled_message = models.TextField(verbose_name=_("Text of disabled signature message"),
+                                        default=_("The ability to sign under this petition has been disabled."),
+                                        help_text=_("A message posted on the page if the signature is disabled."))
     objects = PetitionQuerySet.as_manager()
 
     class Meta:

@@ -58,6 +58,16 @@ class SignatureFormViewTestCase(TestCase):
         response = self.client.post(self.url, {'first_name': "X"})
         self.assertRedirects(response, self.success_url)
 
+    def test_petition_disabled(self):
+        self.petition.is_active = False
+        self.petition.save()
+        response = self.client.post(self.url, {'first_name': "X"}, follow=True)
+        self.assertRedirects(response, self.petition.get_absolute_url())
+
+        message = list(response.context.get('messages'))[0]
+        self.assertEqual(message.tags, "warning")
+        self.assertTrue(self.petition.disabled_warning in message.message)
+
 
 class PetitionSuccessViewTestCase(TestCase):
     def setUp(self):

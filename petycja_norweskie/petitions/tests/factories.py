@@ -24,8 +24,11 @@ class PetitionFactory(factory.django.DjangoModelFactory):
     email_label = factory.Sequence("petition-email_label-{0}".format)
     sign_button_text = factory.Sequence("petition-sign_button_text-{0}".format)
     paginate_by = factory.Sequence(lambda n: n)
-    is_published = factory.Sequence(lambda n: n % 2 == 0)
+    is_published = True
     is_active = True
+    disabled_warning = factory.fuzzy.FuzzyText()
+    disabled_message = factory.fuzzy.FuzzyText()
+
     front = factory.Sequence(lambda n: n % 2 == 0)
 
     class Meta:
