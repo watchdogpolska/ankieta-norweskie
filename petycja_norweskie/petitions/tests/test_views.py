@@ -63,10 +63,16 @@ class SignatureFormViewTestCase(TestCase):
         self.petition.save()
         response = self.client.post(self.url, {'first_name': "X"}, follow=True)
         self.assertRedirects(response, self.petition.get_absolute_url())
+        self.assertMessageContains(response, "warning", self.petition.disabled_warning)
 
-        message = list(response.context.get('messages'))[0]
-        self.assertEqual(message.tags, "warning")
-        self.assertTrue(self.petition.disabled_warning in message.message)
+    def assertMessageContains(self, response, type, msg):
+        try:
+            message = list(response.context['messages'])[0]
+        except AttributeError:  # since django 1.11 it available as context_data
+            message = list(response.context_data.get('messages'))[0]
+
+        self.assertEqual(message.tags, type)
+        self.assertTrue(msg in message.message)
 
 
 class PetitionSuccessViewTestCase(TestCase):

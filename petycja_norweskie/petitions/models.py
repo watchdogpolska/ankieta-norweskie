@@ -99,8 +99,12 @@ class Petition(TimeStampedModel):
 class PermissionDefinition(models.Model):
     petition = models.ForeignKey(Petition, help_text=_("Petition"), on_delete=models.CASCADE)
     text = models.TextField()
-    default = models.BooleanField(default=True, help_text=_("Define default check on permission field"))
-    required = models.BooleanField(default=True, help_text=_("Define the field is required or not"))
+    default = models.BooleanField(verbose_name=_("Default checked"),
+                                  default=True,
+                                  help_text=_("Define default check on permission field"))
+    required = models.BooleanField(verbose_name=_("Check required"),
+                                   default=True,
+                                   help_text=_("Define the field is required or not"))
     ordering = models.PositiveSmallIntegerField(default=1, help_text=_("Define orders of the permissions in form"))
 
     class Meta:
