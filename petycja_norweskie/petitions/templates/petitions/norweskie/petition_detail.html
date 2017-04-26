@@ -17,11 +17,12 @@
       {% crispy form %}
     </div>
     {% else %}
-     {{petition.disabled_message}}
+    {{petition.disabled_message}}
     {% endif %}
     <a class="btn btn-primary"
        href="{% url 'petitions:signature' slug=object.slug %}">{% trans "They signed" %}</a>
-    <p>List podpisało {{ object.signature_set.all.count }} organizacji. Dołącz do nich!</p>
+    <p>List podpisało {{ object.signature_set.all.count }} organizacji.
+      {% if petition.is_active %} Dołącz do nich!{% endif %}</p>
     <h2>Powiadom innych:</h2>
     <p>
     <div class="fb-share-button" data-href="{{ request.get_host }}" data-layout="button" data-size="small"
