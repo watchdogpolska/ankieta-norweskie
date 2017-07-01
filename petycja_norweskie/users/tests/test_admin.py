@@ -1,6 +1,9 @@
 # coding=utf-8
+from atom.mixins import AdminTestCaseMixin
 from test_plus.test import TestCase
 
+from petycja_norweskie.users.models import User
+from petycja_norweskie.users.tests.factories import UserFactory
 from ..admin import MyUserCreationForm
 
 
@@ -38,3 +41,9 @@ class TestMyUserCreationForm(TestCase):
         # The form.errors dict should contain a single error called 'username'
         self.assertTrue(len(form.errors) == 1)
         self.assertTrue('username' in form.errors)
+
+
+class UserAdminTestCase(AdminTestCaseMixin, TestCase):
+    user_factory_cls = UserFactory
+    factory_cls = UserFactory
+    model = User
