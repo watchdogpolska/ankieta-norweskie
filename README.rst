@@ -1,3 +1,5 @@
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwatchdogpolska%2Fpetycja-norweskie.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwatchdogpolska%2Fpetycja-norweskie?ref=badge_shield)
+
 petycja-norweskie
 =================
 
@@ -27,3 +29,7 @@ System petycyjny posiada następujące funkcjonalności:
 * mechanizm zgód i ich definicji.
 
 Szczegółówe informacje na temat projektu zostały przedstawione w dokumentacji: https://petycja-norweskie.readthedocs.io/
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwatchdogpolska%2Fpetycja-norweskie.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwatchdogpolska%2Fpetycja-norweskie?ref=badge_large)
