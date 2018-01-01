@@ -34,4 +34,4 @@ django-redis==4.8.0
 redis>=2.10.5
 
 # Your custom requirements go here
-django-import-export==0.5.1
+django-import-export==0.6.1
