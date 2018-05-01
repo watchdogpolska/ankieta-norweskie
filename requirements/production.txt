@@ -21,6 +21,6 @@ django-anymail==2.2
 
 # Raven is the Sentry client
 # --------------------------
-raven==6.1.0
+raven==6.7.0
 factory-boy==2.10.0
 
