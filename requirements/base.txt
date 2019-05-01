@@ -16,7 +16,7 @@ django-crispy-forms==1.7.2
 # Models
 django-model-utils==3.1.2
 
-django-atom==0.15.3
+django-atom==0.16.3
 # Images
 Pillow==4.2.1
 
