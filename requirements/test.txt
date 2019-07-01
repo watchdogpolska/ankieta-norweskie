@@ -2,7 +2,7 @@
 -r local.txt
 
 coverage==4.5.3
-flake8==3.4.1 # pyup: != 2.6.0
+flake8==3.7.7 # pyup: != 2.6.0
 django-test-plus==1.0.18
 factory-boy==2.12.0
 
